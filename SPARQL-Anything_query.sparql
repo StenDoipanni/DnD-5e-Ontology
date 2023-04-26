@@ -16,17 +16,21 @@ CONSTRUCT {
 ?dndclass a owl:NamedIndividual ; rdfs:label ?name ;
     dnd:hitDice ?hitDice ;
     dnd:classProficiency ?classProficiency ;
-      dnd:castsWith ?casterAbility .
+    dnd:castsWith ?casterAbility ;
+    dnd:includesLevel ?classLevel ;
+    dnd:proficientWithWeapon ?weaponType .
+#    ?classLevel dnd:developsFeature ?classFeature .
   
   ### GENERAL D&D ONTOLOGY TRIPLES
   ?hitDice a owl:Class , owl:NamedIndividual ; a dnd:DiceType .
   ?classProficiency a owl:Class , owl:NamedIndividual ; a dnd:Ability .
   ?casterAbility a dnd:Ability .
-  
+
 }
 
 WHERE {
   SERVICE <x-sparql-anything:> {
+    
     fx:properties fx:location "https://raw.githubusercontent.com/kinkofer/FightClub5eXML/main/Sources/PlayersHandbook/class-druid-phb.xml" .
     [ a xyz:compendium , fx:root ;
                   rdf:_1 [ a xyz:class ; 
@@ -34,22 +38,49 @@ WHERE {
 				  rdf:_2 [ a xyz:hd ; rdf:_1 ?hd] ;
                   rdf:_3 [ a xyz:proficiency ; rdf:_1 ?proficiency] ;
                   rdf:_4 [ a xyz:numSkills ; rdf:_1 ?numSkills] ;
-				  rdf:_5 [ a xyz:spellAbility ; rdf:_1 ?spellAbility]          
+				  rdf:_5 [ a xyz:spellAbility ; rdf:_1 ?spellAbility]; 
+				  rdf:_6 [ a xyz:autolevel ; xyz:level ?level ; rdf:_1
+              		[ a xyz:feature ; 
+				### for weapons
+					rdf:_6 [ a xyz:text ; rdf:_1 ?weapon ] ; rdf:_1 [ a xyz:name ; rdf:_1 ?featureName]
+          ] 
+        ]  
       ] 
-    ]
-             
+    ] 
+      BIND(REPLACE(STR(?weapon), "• Weapons: ", "") AS ?modWeapon) .
       BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?name))) AS ?dndclass)
       BIND(IRI(CONCAT("https://w3id.org/dnd5e/d",str(?hd))) AS ?hitDice)
       BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?proficiency))) AS ?classProficiency)
       BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?spellAbility))) AS ?casterAbility)
-      OPTIONAL {
+      BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?featureName))) AS ?classFeature)
+      BIND(IRI(CONCAT("Lv",str(?level))) AS ?lv)
+      BIND(IRI(CONCAT(str(?dndclass),str(?lv))) AS ?classLevel)
+
+    {
+          OPTIONAL {
+      SERVICE <x-sparql-anything:> {
+          fx:properties fx:content ?modWeapon .
+          fx:properties fx:txt.split ", " .
+          FILTER(isLiteral(?w))
+          FILTER(strlen(str(?modWeapon))>0)
+          ?a ?b ?w
+          BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?w))) AS ?weaponType)
+        }
+      }
+    }
+    UNION
+    {
+          OPTIONAL {
         SERVICE <x-sparql-anything:> {
           fx:properties fx:content ?proficiency .
           fx:properties fx:txt.split ", " .
           FILTER(isLiteral(?cProf))
           FILTER(strlen(str(?proficiency))>0)
           ?a ?b ?cProf
-          BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?cProf))) AS ?classProficiency)
+          BIND(REPLACE(STR(?cProf), " ", "_") AS ?modClassProficiency) .
+          BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?modClassProficiency))) AS ?classProficiency)
+          
+  }
   }
   }
   }
