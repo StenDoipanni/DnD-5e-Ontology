@@ -1,0 +1,73 @@
+
+### This file is temporary. This query differs from the previous one for settin the parameter fx:use-rdfs-member to "true".
+### This allows to use the rdfs:member property instead of rdf:_1, rdf:_2, etc.
+
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX fx: <http://sparql.xyz/facade-x/ns/>
+PREFIX xyz: <http://sparql.xyz/facade-x/data/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dnd: <https://w3id.org/dnd5e/>
+
+
+#SELECT DISTINCT ?name ?proficiency ?numSkills ?spellAbility ?autolevel
+
+CONSTRUCT {
+  
+  ### CLASS RELATED
+  
+  ?dndclass a owl:NamedIndividual , owl:Class ;
+    dnd:proficientIn ?classProficiency ;
+    dnd:hitDice ?hitDice ;
+    dnd:castsWith ?castingAbility ;
+    dnd:includesLevel ?classLevel .
+    #dnd:proficientWithWeapon ?weaponType .
+    
+    ### GENERAL D&D TRIPLES
+    
+    dnd:Ability a owl:Class .
+	?classProficiency a owl:Class , owl:NamedIndividual ; a dnd:Ability .
+    ?hitDice a owl:Class , owl:NamedIndividual ; a dnd:DiceType .
+}
+
+WHERE {
+  SERVICE <x-sparql-anything:> {
+    fx:properties fx:use-rdfs-member true .
+    fx:properties fx:location "https://raw.githubusercontent.com/kinkofer/FightClub5eXML/main/Sources/PlayersHandbook/class-druid-phb.xml" .
+    
+    ?root a xyz:compendium ; rdfs:member ?class .
+    ?class rdfs:member ?nameC , ?hdC , ?proficiencyC , ?numSkillsC , ?spellAbilityC , ?autolevelC .
+    ?nameC a xyz:name ; rdfs:member ?name .
+    ?hdC a xyz:hd ; rdfs:member ?hd .
+    ?proficiencyC a xyz:proficiency ; rdfs:member ?proficiency .
+    ?numSkillsC a xyz:numSkills ; rdfs:member ?numSkills .
+    ?spellAbilityC a xyz:spellAbility ; rdfs:member ?spellAbility .
+    ?autolevelC a xyz:autolevel ; rdfs:member ?autolevel .
+    
+    
+    BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?name))) AS ?dndclass)
+    BIND(IRI(CONCAT("https://w3id.org/dnd5e/d",str(?hd))) AS ?hitDice)
+    BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?numSkills))) AS ?classSkill)
+    BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?spellAbility))) AS ?castingAbility)
+    BIND(IRI(CONCAT(str(?dndclass),"Lv")) AS ?classlv)
+    BIND(IRI(CONCAT(str(?classlv),str(?autolevel))) AS ?classLevel)
+    
+    {
+      OPTIONAL {
+        SERVICE <x-sparql-anything:> {
+          fx:properties fx:content ?proficiency .
+          fx:properties fx:txt.split ", " .
+          FILTER(isLiteral(?cProf))
+          FILTER(strlen(str(?proficiency))>0)
+          ?a ?b ?cProf
+          BIND(REPLACE(STR(?cProf), " ", "_") AS ?modClassProficiency) .
+          BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?modClassProficiency))) AS ?classProficiency)
+          
+  }
+  }
+    }
+
+    
+  }
+}
