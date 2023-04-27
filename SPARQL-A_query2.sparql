@@ -2,7 +2,6 @@
 ### This file is temporary. This query differs from the previous one for settin the parameter fx:use-rdfs-member to "true".
 ### This allows to use the rdfs:member property instead of rdf:_1, rdf:_2, etc.
 
-
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX fx: <http://sparql.xyz/facade-x/ns/>
 PREFIX xyz: <http://sparql.xyz/facade-x/data/>
@@ -21,8 +20,10 @@ CONSTRUCT {
     dnd:proficientIn ?classProficiency ;
     dnd:hitDice ?hitDice ;
     dnd:castsWith ?castingAbility ;
-    dnd:includesLevel ?classLevel .
-    #dnd:proficientWithWeapon ?weaponType .
+    dnd:includesLevel ?classLevel ;
+    dnd:armorCompetenceIn ?lightArmor , ?mediumArmor , ?heavyArmor , ?shields ;
+    dnd:weaponCompetenceIn ?weaponType .
+
     
     ### GENERAL D&D TRIPLES
     
@@ -43,7 +44,9 @@ WHERE {
     ?proficiencyC a xyz:proficiency ; rdfs:member ?proficiency .
     ?numSkillsC a xyz:numSkills ; rdfs:member ?numSkills .
     ?spellAbilityC a xyz:spellAbility ; rdfs:member ?spellAbility .
-    ?autolevelC a xyz:autolevel ; rdfs:member ?autolevel .
+    ?autolevelC a xyz:autolevel ; rdfs:member ?autolevel ; xyz:level ?lv .
+    ?autolevel rdfs:member ?feature .
+    ?feature rdfs:member ?text2 .
     
     
     BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?name))) AS ?dndclass)
@@ -52,8 +55,26 @@ WHERE {
     BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?spellAbility))) AS ?castingAbility)
     BIND(IRI(CONCAT(str(?dndclass),"Lv")) AS ?classlv)
     BIND(IRI(CONCAT(str(?classlv),str(?autolevel))) AS ?classLevel)
+    BIND(IF(CONTAINS(?text2, "• Armor:"), ?text2, false) AS ?armorType)
+    BIND(IF(CONTAINS(?armorType, "light"), IRI("https://w3id.org/dnd5e/LightArmor"), false) AS ?lightArmor)
+    BIND(IF(CONTAINS(?armorType, "medium"), IRI("https://w3id.org/dnd5e/MediumArmor"), false) AS ?mediumArmor)
+    BIND(IF(CONTAINS(?armorType, "heavy"), IRI("https://w3id.org/dnd5e/HeavyArmor"), false) AS ?heavyArmor)
+    BIND(IF(CONTAINS(?armorType, "shield"), IRI("https://w3id.org/dnd5e/Shields"), false) AS ?shields)
+    BIND(IF(CONTAINS(?text2, "• Weapons:"), ?text2, false) AS ?weapon)
+    BIND(REPLACE(STR(?weapon), "• Weapons: ", "") AS ?modWeapon)
     
-    {
+    OPTIONAL {
+      SERVICE <x-sparql-anything:> {
+          fx:properties fx:content ?modWeapon .
+          fx:properties fx:txt.split ", " .
+          FILTER(isLiteral(?w))
+          FILTER(strlen(str(?modWeapon))>0)
+          ?a ?b ?w
+          BIND(REPLACE(STR(?w), " ", "_") AS ?w2) .
+          BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?w2))) AS ?weaponType)
+        }
+      }   
+    
       OPTIONAL {
         SERVICE <x-sparql-anything:> {
           fx:properties fx:content ?proficiency .
@@ -65,9 +86,6 @@ WHERE {
           BIND(IRI(CONCAT("https://w3id.org/dnd5e/",str(?modClassProficiency))) AS ?classProficiency)
           
   }
-  }
-    }
-
-    
+  }      
   }
 }
