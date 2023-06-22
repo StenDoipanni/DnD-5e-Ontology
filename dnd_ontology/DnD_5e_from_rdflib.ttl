@@ -1,0 +1,1994 @@
+@prefix : <http://example.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.ontologydesignpatterns.org/ont/dnd5e/classes> .
+
+<http://www.ontologydesignpatterns.org/ont/dnd5e/classes> rdf:type owl:Ontology ;
+                                                           rdfs:comment """First attempt to automatically generate a D&D 5e ontology from the GitHub 5e Database \"Classes.json\" file, available here:
+https://github.com/5e-bits/5e-database/blob/main/src/5e-SRD-Classes.json
+
+Designed by Stefano De Giorgis""" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#optionType
+:optionType rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#type
+:type rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#url
+:url rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#choose
+:choose rdf:type owl:ObjectProperty .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#hasChoice
+:hasChoice rdf:type owl:ObjectProperty .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#hasEquipment
+:hasEquipment rdf:type owl:ObjectProperty .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#hasOption
+:hasOption rdf:type owl:ObjectProperty .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#hasOptionsArray
+:hasOptionsArray rdf:type owl:ObjectProperty .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#hasProficiency
+:hasProficiency rdf:type owl:ObjectProperty .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#hasProficiencyChoice
+:hasProficiencyChoice rdf:type owl:ObjectProperty .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#hasSavingThrow
+:hasSavingThrow rdf:type owl:ObjectProperty .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#hasStartingEquipment
+:hasStartingEquipment rdf:type owl:ObjectProperty .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#hasStartingEquipmentOptions
+:hasStartingEquipmentOptions rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#choose
+:choose rdf:type owl:DatatypeProperty .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#count
+:count rdf:type owl:DatatypeProperty .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#hit_die
+:hit_die rdf:type owl:DatatypeProperty .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#quantity
+:quantity rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#DnD_Entity
+:DnD_Entity rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#all-armor
+:all-armor rdf:type owl:NamedIndividual ,
+                    :DnD_Entity ;
+           :url "/api/proficiencies/all-armor" ;
+           rdfs:label "All armor" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#arrow
+:arrow rdf:type owl:NamedIndividual ,
+                :DnD_Entity ;
+       :quantity 20 ;
+       :url "/api/equipment/arrow" ;
+       rdfs:label "Arrow" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#bagpipes
+:bagpipes rdf:type owl:NamedIndividual ,
+                   :DnD_Entity ;
+          :optionType "reference" ;
+          :url "/api/proficiencies/bagpipes" ;
+          rdfs:label "Bagpipes" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#barbarian
+:barbarian rdf:type owl:NamedIndividual ,
+                    :DnD_Entity ;
+           :hasProficiency :light-armor ,
+                           :martial-weapons ,
+                           :medium-armor ,
+                           :saving-throw-con ,
+                           :saving-throw-str ,
+                           :shields ,
+                           :simple-weapons ;
+           :hasProficiencyChoice :barbarian_proficiency_choice_1 ;
+           :hasSavingThrow :con ,
+                           :str ;
+           :hasStartingEquipment :barbarian_starting_equipment ;
+           :hasStartingEquipmentOptions :barbarian_starting_equipment_options ;
+           :hit_die "d12" ;
+           rdfs:label "Barbarian" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#barbarian_proficiency_choice_1
+:barbarian_proficiency_choice_1 rdf:type owl:NamedIndividual ,
+                                         :DnD_Entity ;
+                                :hasOptionsArray :barbarian_proficiency_choice_1_options_array ;
+                                :choose 2 ;
+                                :type "proficiencies" ;
+                                rdfs:comment "Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#barbarian_proficiency_choice_1_options_array
+:barbarian_proficiency_choice_1_options_array rdf:type owl:NamedIndividual ,
+                                                       :DnD_Entity ;
+                                              :hasChoice :barbarian_starting_equipment_option_1_choice_2 ,
+                                                         :barbarian_starting_equipment_option_2_choice_2 ;
+                                              :hasOption :greataxe ,
+                                                         :handaxe ,
+                                                         :skill-animal-handling ,
+                                                         :skill-athletics ,
+                                                         :skill-intimidation ,
+                                                         :skill-nature ,
+                                                         :skill-perception ,
+                                                         :skill-survival .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#barbarian_starting_equipment
+:barbarian_starting_equipment rdf:type owl:NamedIndividual ,
+                                       :DnD_Entity ;
+                              :hasEquipment :explorers-pack ,
+                                            :javelin .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#barbarian_starting_equipment_option_1_choice
+:barbarian_starting_equipment_option_1_choice rdf:type owl:NamedIndividual ,
+                                                       :DnD_Entity ;
+                                              :choose 1 ;
+                                              rdfs:comment "(a) a greataxe or (b) any martial melee weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#barbarian_starting_equipment_option_1_choice_2
+:barbarian_starting_equipment_option_1_choice_2 rdf:type owl:NamedIndividual ,
+                                                         :DnD_Entity ;
+                                                :choose 1 ;
+                                                rdfs:comment "any martial melee weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#barbarian_starting_equipment_option_2_choice
+:barbarian_starting_equipment_option_2_choice rdf:type owl:NamedIndividual ,
+                                                       :DnD_Entity ;
+                                              :choose 1 ;
+                                              rdfs:comment "(a) two handaxes or (b) any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#barbarian_starting_equipment_option_2_choice_2
+:barbarian_starting_equipment_option_2_choice_2 rdf:type owl:NamedIndividual ,
+                                                         :DnD_Entity ;
+                                                :choose 1 ;
+                                                rdfs:comment "any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#barbarian_starting_equipment_options
+:barbarian_starting_equipment_options rdf:type owl:NamedIndividual ,
+                                               :DnD_Entity ;
+                                      :hasChoice :barbarian_starting_equipment_option_1_choice ,
+                                                 :barbarian_starting_equipment_option_2_choice .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#bard
+:bard rdf:type owl:NamedIndividual ,
+               :DnD_Entity ;
+      :hasProficiency :hand-crossbows ,
+                      :light-armor ,
+                      :longswords ,
+                      :rapiers ,
+                      :saving-throw-cha ,
+                      :saving-throw-dex ,
+                      :shortswords ,
+                      :simple-weapons ;
+      :hasProficiencyChoice :bard_proficiency_choice_1 ,
+                            :bard_proficiency_choice_2 ;
+      :hasSavingThrow :cha ,
+                      :dex ;
+      :hasStartingEquipment :bard_starting_equipment ;
+      :hasStartingEquipmentOptions :bard_starting_equipment_options ;
+      :hit_die "d8" ;
+      rdfs:label "Bard" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#bard_proficiency_choice_1
+:bard_proficiency_choice_1 rdf:type owl:NamedIndividual ,
+                                    :DnD_Entity ;
+                           :hasOptionsArray :bard_proficiency_choice_1_options_array ;
+                           :choose 3 ;
+                           :type "proficiencies" ;
+                           rdfs:comment "Choose any three" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#bard_proficiency_choice_1_options_array
+:bard_proficiency_choice_1_options_array rdf:type owl:NamedIndividual ,
+                                                  :DnD_Entity ;
+                                         :hasOption :skill-acrobatics ,
+                                                    :skill-animal-handling ,
+                                                    :skill-arcana ,
+                                                    :skill-athletics ,
+                                                    :skill-deception ,
+                                                    :skill-history ,
+                                                    :skill-insight ,
+                                                    :skill-intimidation ,
+                                                    :skill-investigation ,
+                                                    :skill-medicine ,
+                                                    :skill-nature ,
+                                                    :skill-perception ,
+                                                    :skill-performance ,
+                                                    :skill-persuasion ,
+                                                    :skill-religion ,
+                                                    :skill-sleight-of-hand ,
+                                                    :skill-stealth ,
+                                                    :skill-survival .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#bard_proficiency_choice_2
+:bard_proficiency_choice_2 rdf:type owl:NamedIndividual ,
+                                    :DnD_Entity ;
+                           :hasOptionsArray :bard_proficiency_choice_2_options_array ;
+                           :choose 3 ;
+                           :type "proficiencies" ;
+                           rdfs:comment "Three musical instruments of your choice" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#bard_proficiency_choice_2_options_array
+:bard_proficiency_choice_2_options_array rdf:type owl:NamedIndividual ,
+                                                  :DnD_Entity ;
+                                         :hasChoice :bard_starting_equipment_option_1_choice_3 ,
+                                                    :bard_starting_equipment_option_3_choice_2 ;
+                                         :hasOption :bagpipes ,
+                                                    :diplomats-pack ,
+                                                    :drum ,
+                                                    :dulcimer ,
+                                                    :entertainers-pack ,
+                                                    :flute ,
+                                                    :horn ,
+                                                    :longsword ,
+                                                    :lute ,
+                                                    :lyre ,
+                                                    :pan-flute ,
+                                                    :rapier ,
+                                                    :shawm ,
+                                                    :viol .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#bard_starting_equipment
+:bard_starting_equipment rdf:type owl:NamedIndividual ,
+                                  :DnD_Entity ;
+                         :hasEquipment :dagger ,
+                                       :leather-armor .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#bard_starting_equipment_option_1_choice
+:bard_starting_equipment_option_1_choice rdf:type owl:NamedIndividual ,
+                                                  :DnD_Entity ;
+                                         :choose 1 ;
+                                         rdfs:comment "(a) a rapier, (b) a longsword, or (c) any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#bard_starting_equipment_option_1_choice_3
+:bard_starting_equipment_option_1_choice_3 rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :choose 1 ;
+                                           rdfs:comment "any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#bard_starting_equipment_option_2_choice
+:bard_starting_equipment_option_2_choice rdf:type owl:NamedIndividual ,
+                                                  :DnD_Entity ;
+                                         :choose 1 ;
+                                         rdfs:comment "(a) a diplomat’s pack or (b) an entertainer’s pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#bard_starting_equipment_option_3_choice
+:bard_starting_equipment_option_3_choice rdf:type owl:NamedIndividual ,
+                                                  :DnD_Entity ;
+                                         :choose 1 ;
+                                         rdfs:comment "(a) a lute or (b) any other musical instrument" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#bard_starting_equipment_option_3_choice_2
+:bard_starting_equipment_option_3_choice_2 rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :choose 1 ;
+                                           rdfs:comment "any other musical instrument" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#bard_starting_equipment_options
+:bard_starting_equipment_options rdf:type owl:NamedIndividual ,
+                                          :DnD_Entity ;
+                                 :hasChoice :bard_starting_equipment_option_1_choice ,
+                                            :bard_starting_equipment_option_2_choice ,
+                                            :bard_starting_equipment_option_3_choice .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#burglars-pack
+:burglars-pack rdf:type owl:NamedIndividual ,
+                        :DnD_Entity ;
+               :count 1 ;
+               :optionType "counted_reference" ;
+               :url "/api/equipment/burglars-pack" ;
+               rdfs:label "Burglar's Pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#cha
+:cha rdf:type owl:NamedIndividual ,
+              :DnD_Entity ;
+     :url "/api/ability-scores/cha" ;
+     rdfs:label "CHA" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#chain-mail
+:chain-mail rdf:type owl:NamedIndividual ,
+                     :DnD_Entity ;
+            :count 1 ;
+            :quantity 1 ;
+            :optionType "counted_reference" ;
+            :url "/api/equipment/chain-mail" ;
+            rdfs:label "Chain Mail" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#cleric
+:cleric rdf:type owl:NamedIndividual ,
+                 :DnD_Entity ;
+        :hasProficiency :light-armor ,
+                        :medium-armor ,
+                        :saving-throw-cha ,
+                        :saving-throw-wis ,
+                        :shields ,
+                        :simple-weapons ;
+        :hasProficiencyChoice :cleric_proficiency_choice_1 ;
+        :hasSavingThrow :cha ,
+                        :wis ;
+        :hasStartingEquipment :cleric_starting_equipment ;
+        :hasStartingEquipmentOptions :cleric_starting_equipment_options ;
+        :hit_die "d8" ;
+        rdfs:label "Cleric" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#cleric_proficiency_choice_1
+:cleric_proficiency_choice_1 rdf:type owl:NamedIndividual ,
+                                      :DnD_Entity ;
+                             :hasOptionsArray :cleric_proficiency_choice_1_options_array ;
+                             :choose 2 ;
+                             :type "proficiencies" ;
+                             rdfs:comment "Choose two from History, Insight, Medicine, Persuasion, and Religion" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#cleric_proficiency_choice_1_options_array
+:cleric_proficiency_choice_1_options_array rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :hasChoice :cleric_starting_equipment_option_3_choice_2 ;
+                                           :hasOption :chain-mail ,
+                                                      :explorers-pack ,
+                                                      :leather-armor ,
+                                                      :mace ,
+                                                      :priests-pack ,
+                                                      :scale-mail ,
+                                                      :skill-history ,
+                                                      :skill-insight ,
+                                                      :skill-medicine ,
+                                                      :skill-persuasion ,
+                                                      :skill-religion ,
+                                                      :warhammer .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#cleric_starting_equipment
+:cleric_starting_equipment rdf:type owl:NamedIndividual ,
+                                    :DnD_Entity ;
+                           :hasEquipment :shield .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#cleric_starting_equipment_option_1_choice
+:cleric_starting_equipment_option_1_choice rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :choose 1 ;
+                                           rdfs:comment "(a) a mace or (b) a warhammer (if proficient)" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#cleric_starting_equipment_option_2_choice
+:cleric_starting_equipment_option_2_choice rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :choose 1 ;
+                                           rdfs:comment "(a) scale mail, (b) leather armor, or (c) chain mail (if proficient)" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#cleric_starting_equipment_option_3_choice
+:cleric_starting_equipment_option_3_choice rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :choose 1 ;
+                                           rdfs:comment "(a) a light crossbow and 20 bolts or (b) any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#cleric_starting_equipment_option_3_choice_2
+:cleric_starting_equipment_option_3_choice_2 rdf:type owl:NamedIndividual ,
+                                                      :DnD_Entity ;
+                                             :choose 1 ;
+                                             rdfs:comment "any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#cleric_starting_equipment_option_4_choice
+:cleric_starting_equipment_option_4_choice rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :choose 1 ;
+                                           rdfs:comment "(a) a priest’s pack or (b) an explorer’s pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#cleric_starting_equipment_option_5_choice
+:cleric_starting_equipment_option_5_choice rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :choose 1 ;
+                                           rdfs:comment "holy symbol" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#cleric_starting_equipment_options
+:cleric_starting_equipment_options rdf:type owl:NamedIndividual ,
+                                            :DnD_Entity ;
+                                   :hasChoice :cleric_starting_equipment_option_1_choice ,
+                                              :cleric_starting_equipment_option_2_choice ,
+                                              :cleric_starting_equipment_option_3_choice ,
+                                              :cleric_starting_equipment_option_4_choice ,
+                                              :cleric_starting_equipment_option_5_choice .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#clubs
+:clubs rdf:type owl:NamedIndividual ,
+                :DnD_Entity ;
+       :url "/api/proficiencies/clubs" ;
+       rdfs:label "Clubs" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#component-pouch
+:component-pouch rdf:type owl:NamedIndividual ,
+                          :DnD_Entity ;
+                 :count 1 ;
+                 :optionType "counted_reference" ;
+                 :url "/api/equipment/component-pouch" ;
+                 rdfs:label "Component pouch" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#con
+:con rdf:type owl:NamedIndividual ,
+              :DnD_Entity ;
+     :url "/api/ability-scores/con" ;
+     rdfs:label "CON" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#crossbows-light
+:crossbows-light rdf:type owl:NamedIndividual ,
+                          :DnD_Entity ;
+                 :url "/api/proficiencies/crossbows-light" ;
+                 rdfs:label "Crossbows, light" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#dagger
+:dagger rdf:type owl:NamedIndividual ,
+                 :DnD_Entity ;
+        :count 1 ;
+        :quantity 1 ,
+                  2 ;
+        :optionType "counted_reference" ;
+        :url "/api/equipment/dagger" ;
+        rdfs:label "Dagger" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#daggers
+:daggers rdf:type owl:NamedIndividual ,
+                  :DnD_Entity ;
+         :url "/api/proficiencies/daggers" ;
+         rdfs:label "Daggers" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#dart
+:dart rdf:type owl:NamedIndividual ,
+               :DnD_Entity ;
+      :quantity 10 ;
+      :url "/api/equipment/dart" ;
+      rdfs:label "Dart" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#darts
+:darts rdf:type owl:NamedIndividual ,
+                :DnD_Entity ;
+       :url "/api/proficiencies/darts" ;
+       rdfs:label "Darts" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#dex
+:dex rdf:type owl:NamedIndividual ,
+              :DnD_Entity ;
+     :url "/api/ability-scores/dex" ;
+     rdfs:label "DEX" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#diplomats-pack
+:diplomats-pack rdf:type owl:NamedIndividual ,
+                         :DnD_Entity ;
+                :count 1 ;
+                :optionType "counted_reference" ;
+                :url "/api/equipment/diplomats-pack" ;
+                rdfs:label "Diplomat's Pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#druid
+:druid rdf:type owl:NamedIndividual ,
+                :DnD_Entity ;
+       :hasProficiency :clubs ,
+                       :daggers ,
+                       :darts ,
+                       :herbalism-kit ,
+                       :javelins ,
+                       :light-armor ,
+                       :maces ,
+                       :medium-armor ,
+                       :quarterstaffs ,
+                       :saving-throw-int ,
+                       :saving-throw-wis ,
+                       :scimitars ,
+                       :shields ,
+                       :sickles ,
+                       :slings ,
+                       :spears ;
+       :hasProficiencyChoice :druid_proficiency_choice_1 ;
+       :hasSavingThrow :int ,
+                       :wis ;
+       :hasStartingEquipment :druid_starting_equipment ;
+       :hasStartingEquipmentOptions :druid_starting_equipment_options ;
+       :hit_die "d8" ;
+       rdfs:label "Druid" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#druid_proficiency_choice_1
+:druid_proficiency_choice_1 rdf:type owl:NamedIndividual ,
+                                     :DnD_Entity ;
+                            :hasOptionsArray :druid_proficiency_choice_1_options_array ;
+                            :choose 2 ;
+                            :type "proficiencies" ;
+                            rdfs:comment "Choose two from Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, and Survival" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#druid_proficiency_choice_1_options_array
+:druid_proficiency_choice_1_options_array rdf:type owl:NamedIndividual ,
+                                                   :DnD_Entity ;
+                                          :hasChoice :druid_starting_equipment_option_1_choice_2 ,
+                                                     :druid_starting_equipment_option_2_choice_2 ;
+                                          :hasOption :scimitar ,
+                                                     :shield ,
+                                                     :skill-animal-handling ,
+                                                     :skill-arcana ,
+                                                     :skill-insight ,
+                                                     :skill-medicine ,
+                                                     :skill-nature ,
+                                                     :skill-perception ,
+                                                     :skill-religion ,
+                                                     :skill-survival .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#druid_starting_equipment
+:druid_starting_equipment rdf:type owl:NamedIndividual ,
+                                   :DnD_Entity ;
+                          :hasEquipment :explorers-pack ,
+                                        :leather-armor .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#druid_starting_equipment_option_1_choice
+:druid_starting_equipment_option_1_choice rdf:type owl:NamedIndividual ,
+                                                   :DnD_Entity ;
+                                          :choose 1 ;
+                                          rdfs:comment "(a) a wooden shield or (b) any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#druid_starting_equipment_option_1_choice_2
+:druid_starting_equipment_option_1_choice_2 rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :choose 1 ;
+                                            rdfs:comment "any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#druid_starting_equipment_option_2_choice
+:druid_starting_equipment_option_2_choice rdf:type owl:NamedIndividual ,
+                                                   :DnD_Entity ;
+                                          :choose 1 ;
+                                          rdfs:comment "(a) a scimitar or (b) any simple melee weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#druid_starting_equipment_option_2_choice_2
+:druid_starting_equipment_option_2_choice_2 rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :choose 1 ;
+                                            rdfs:comment "any simple melee weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#druid_starting_equipment_option_3_choice
+:druid_starting_equipment_option_3_choice rdf:type owl:NamedIndividual ,
+                                                   :DnD_Entity ;
+                                          :choose 1 ;
+                                          rdfs:comment "druidic focus" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#druid_starting_equipment_options
+:druid_starting_equipment_options rdf:type owl:NamedIndividual ,
+                                           :DnD_Entity ;
+                                  :hasChoice :druid_starting_equipment_option_1_choice ,
+                                             :druid_starting_equipment_option_2_choice ,
+                                             :druid_starting_equipment_option_3_choice .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#drum
+:drum rdf:type owl:NamedIndividual ,
+               :DnD_Entity ;
+      :optionType "reference" ;
+      :url "/api/proficiencies/drum" ;
+      rdfs:label "Drum" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#dulcimer
+:dulcimer rdf:type owl:NamedIndividual ,
+                   :DnD_Entity ;
+          :optionType "reference" ;
+          :url "/api/proficiencies/dulcimer" ;
+          rdfs:label "Dulcimer" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#dungeoneers-pack
+:dungeoneers-pack rdf:type owl:NamedIndividual ,
+                           :DnD_Entity ;
+                  :count 1 ;
+                  :optionType "counted_reference" ;
+                  :url "/api/equipment/dungeoneers-pack" ;
+                  rdfs:label "Dungeoneer's Pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#entertainers-pack
+:entertainers-pack rdf:type owl:NamedIndividual ,
+                            :DnD_Entity ;
+                   :count 1 ;
+                   :optionType "counted_reference" ;
+                   :url "/api/equipment/entertainers-pack" ;
+                   rdfs:label "Entertainer's Pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#explorers-pack
+:explorers-pack rdf:type owl:NamedIndividual ,
+                         :DnD_Entity ;
+                :count 1 ;
+                :quantity 1 ;
+                :optionType "counted_reference" ;
+                :url "/api/equipment/explorers-pack" ;
+                rdfs:label "Explorer's Pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#fighter
+:fighter rdf:type owl:NamedIndividual ,
+                  :DnD_Entity ;
+         :hasProficiency :all-armor ,
+                         :martial-weapons ,
+                         :saving-throw-con ,
+                         :saving-throw-str ,
+                         :shields ,
+                         :simple-weapons ;
+         :hasProficiencyChoice :fighter_proficiency_choice_1 ;
+         :hasSavingThrow :con ,
+                         :str ;
+         :hasStartingEquipment :fighter_starting_equipment ;
+         :hasStartingEquipmentOptions :fighter_starting_equipment_options ;
+         :hit_die "d10" ;
+         rdfs:label "Fighter" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#fighter_proficiency_choice_1
+:fighter_proficiency_choice_1 rdf:type owl:NamedIndividual ,
+                                       :DnD_Entity ;
+                              :hasOptionsArray :fighter_proficiency_choice_1_options_array ;
+                              :choose 2 ;
+                              :type "proficiencies" ;
+                              rdfs:comment "Choose two skills from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, and Survival" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#fighter_proficiency_choice_1_options_array
+:fighter_proficiency_choice_1_options_array rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :hasChoice :fighter_starting_equipment_option_2_choice_2 ;
+                                            :hasOption :chain-mail ,
+                                                       :dungeoneers-pack ,
+                                                       :explorers-pack ,
+                                                       :handaxe ,
+                                                       :skill-acrobatics ,
+                                                       :skill-animal-handling ,
+                                                       :skill-athletics ,
+                                                       :skill-history ,
+                                                       :skill-insight ,
+                                                       :skill-intimidation ,
+                                                       :skill-perception ,
+                                                       :skill-survival .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#fighter_starting_equipment
+:fighter_starting_equipment rdf:type owl:NamedIndividual ,
+                                     :DnD_Entity .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#fighter_starting_equipment_option_1_choice
+:fighter_starting_equipment_option_1_choice rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :choose 1 ;
+                                            rdfs:comment "(a) chain mail or (b) leather armor, longbow, and 20 arrows" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#fighter_starting_equipment_option_2_choice
+:fighter_starting_equipment_option_2_choice rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :choose 1 ;
+                                            rdfs:comment "(a) a martial weapon and a shield or (b) two martial weapons" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#fighter_starting_equipment_option_2_choice_2
+:fighter_starting_equipment_option_2_choice_2 rdf:type owl:NamedIndividual ,
+                                                       :DnD_Entity ;
+                                              :choose 2 ;
+                                              rdfs:comment "two martial weapons" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#fighter_starting_equipment_option_3_choice
+:fighter_starting_equipment_option_3_choice rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :choose 1 ;
+                                            rdfs:comment "(a) a light crossbow and 20 bolts or (b) two handaxes" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#fighter_starting_equipment_option_4_choice
+:fighter_starting_equipment_option_4_choice rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :choose 1 ;
+                                            rdfs:comment "(a) a dungeoneer’s pack or (b) an explorer’s pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#fighter_starting_equipment_options
+:fighter_starting_equipment_options rdf:type owl:NamedIndividual ,
+                                             :DnD_Entity ;
+                                    :hasChoice :fighter_starting_equipment_option_1_choice ,
+                                               :fighter_starting_equipment_option_2_choice ,
+                                               :fighter_starting_equipment_option_3_choice ,
+                                               :fighter_starting_equipment_option_4_choice .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#flute
+:flute rdf:type owl:NamedIndividual ,
+                :DnD_Entity ;
+       :optionType "reference" ;
+       :url "/api/proficiencies/flute" ;
+       rdfs:label "Flute" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#greataxe
+:greataxe rdf:type owl:NamedIndividual ,
+                   :DnD_Entity ;
+          :count 1 ;
+          :optionType "counted_reference" ;
+          :url "/api/equipment/greataxe" ;
+          rdfs:label "Greataxe" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#hand-crossbows
+:hand-crossbows rdf:type owl:NamedIndividual ,
+                         :DnD_Entity ;
+                :url "/api/proficiencies/hand-crossbows" ;
+                rdfs:label "Hand crossbows" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#handaxe
+:handaxe rdf:type owl:NamedIndividual ,
+                  :DnD_Entity ;
+         :count 2 ;
+         :optionType "counted_reference" ;
+         :url "/api/equipment/handaxe" ;
+         rdfs:label "Handaxe" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#herbalism-kit
+:herbalism-kit rdf:type owl:NamedIndividual ,
+                        :DnD_Entity ;
+               :url "/api/proficiencies/herbalism-kit" ;
+               rdfs:label "Herbalism Kit" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#horn
+:horn rdf:type owl:NamedIndividual ,
+               :DnD_Entity ;
+      :optionType "reference" ;
+      :url "/api/proficiencies/horn" ;
+      rdfs:label "Horn" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#int
+:int rdf:type owl:NamedIndividual ,
+              :DnD_Entity ;
+     :url "/api/ability-scores/int" ;
+     rdfs:label "INT" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#javelin
+:javelin rdf:type owl:NamedIndividual ,
+                  :DnD_Entity ;
+         :count 5 ;
+         :quantity 4 ;
+         :optionType "counted_reference" ;
+         :url "/api/equipment/javelin" ;
+         rdfs:label "Javelin" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#javelins
+:javelins rdf:type owl:NamedIndividual ,
+                   :DnD_Entity ;
+          :url "/api/proficiencies/javelins" ;
+          rdfs:label "Javelins" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#leather-armor
+:leather-armor rdf:type owl:NamedIndividual ,
+                        :DnD_Entity ;
+               :count 1 ;
+               :quantity 1 ;
+               :optionType "counted_reference" ;
+               :url "/api/equipment/leather-armor" ;
+               rdfs:label "Leather Armor" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#light-armor
+:light-armor rdf:type owl:NamedIndividual ,
+                      :DnD_Entity ;
+             :url "/api/proficiencies/light-armor" ;
+             rdfs:label "Light Armor" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#longbow
+:longbow rdf:type owl:NamedIndividual ,
+                  :DnD_Entity ;
+         :quantity 1 ;
+         :url "/api/equipment/longbow" ;
+         rdfs:label "Longbow" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#longsword
+:longsword rdf:type owl:NamedIndividual ,
+                    :DnD_Entity ;
+           :count 1 ;
+           :optionType "counted_reference" ;
+           :url "/api/equipment/longsword" ;
+           rdfs:label "Longsword" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#longswords
+:longswords rdf:type owl:NamedIndividual ,
+                     :DnD_Entity ;
+            :url "/api/proficiencies/longswords" ;
+            rdfs:label "Longswords" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#lute
+:lute rdf:type owl:NamedIndividual ,
+               :DnD_Entity ;
+      :count 1 ;
+      :optionType "counted_reference" ,
+                  "reference" ;
+      :url "/api/equipment/lute" ,
+           "/api/proficiencies/lute" ;
+      rdfs:label "Lute" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#lyre
+:lyre rdf:type owl:NamedIndividual ,
+               :DnD_Entity ;
+      :optionType "reference" ;
+      :url "/api/proficiencies/lyre" ;
+      rdfs:label "Lyre" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#mace
+:mace rdf:type owl:NamedIndividual ,
+               :DnD_Entity ;
+      :count 1 ;
+      :optionType "counted_reference" ;
+      :url "/api/equipment/mace" ;
+      rdfs:label "Mace" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#maces
+:maces rdf:type owl:NamedIndividual ,
+                :DnD_Entity ;
+       :url "/api/proficiencies/maces" ;
+       rdfs:label "Maces" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#martial-weapons
+:martial-weapons rdf:type owl:NamedIndividual ,
+                          :DnD_Entity ;
+                 :url "/api/proficiencies/martial-weapons" ;
+                 rdfs:label "Martial Weapons" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#medium-armor
+:medium-armor rdf:type owl:NamedIndividual ,
+                       :DnD_Entity ;
+              :url "/api/proficiencies/medium-armor" ;
+              rdfs:label "Medium Armor" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#monk
+:monk rdf:type owl:NamedIndividual ,
+               :DnD_Entity ;
+      :hasProficiency :saving-throw-dex ,
+                      :saving-throw-str ,
+                      :shortswords ,
+                      :simple-weapons ;
+      :hasProficiencyChoice :monk_proficiency_choice_1 ,
+                            :monk_proficiency_choice_2 ;
+      :hasSavingThrow :dex ,
+                      :str ;
+      :hasStartingEquipment :monk_starting_equipment ;
+      :hasStartingEquipmentOptions :monk_starting_equipment_options ;
+      :hit_die "d8" ;
+      rdfs:label "Monk" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#monk_proficiency_choice_1
+:monk_proficiency_choice_1 rdf:type owl:NamedIndividual ,
+                                    :DnD_Entity ;
+                           :hasOptionsArray :monk_proficiency_choice_1_options_array ;
+                           :choose 2 ;
+                           :type "proficiencies" ;
+                           rdfs:comment "Choose two from Acrobatics, Athletics, History, Insight, Religion, and Stealth" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#monk_proficiency_choice_1_options_array
+:monk_proficiency_choice_1_options_array rdf:type owl:NamedIndividual ,
+                                                  :DnD_Entity ;
+                                         :hasOption :skill-acrobatics ,
+                                                    :skill-athletics ,
+                                                    :skill-history ,
+                                                    :skill-insight ,
+                                                    :skill-religion ,
+                                                    :skill-stealth .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#monk_proficiency_choice_2
+:monk_proficiency_choice_2 rdf:type owl:NamedIndividual ,
+                                    :DnD_Entity ;
+                           :hasOptionsArray :monk_proficiency_choice_2_options_array ;
+                           :choose 1 ;
+                           :type "proficiencies" ;
+                           rdfs:comment "Choose one type of artisan’s tools or one musical instrument" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#monk_proficiency_choice_2_options_array
+:monk_proficiency_choice_2_options_array rdf:type owl:NamedIndividual ,
+                                                  :DnD_Entity ;
+                                         :hasChoice :monk_starting_equipment_option_1_choice_2 ;
+                                         :hasOption :dungeoneers-pack ,
+                                                    :explorers-pack ,
+                                                    :shortsword .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#monk_starting_equipment
+:monk_starting_equipment rdf:type owl:NamedIndividual ,
+                                  :DnD_Entity ;
+                         :hasEquipment :dart .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#monk_starting_equipment_option_1_choice
+:monk_starting_equipment_option_1_choice rdf:type owl:NamedIndividual ,
+                                                  :DnD_Entity ;
+                                         :choose 1 ;
+                                         rdfs:comment "(a) a shortsword or (b) any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#monk_starting_equipment_option_1_choice_2
+:monk_starting_equipment_option_1_choice_2 rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :choose 1 ;
+                                           rdfs:comment "any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#monk_starting_equipment_option_2_choice
+:monk_starting_equipment_option_2_choice rdf:type owl:NamedIndividual ,
+                                                  :DnD_Entity ;
+                                         :choose 1 ;
+                                         rdfs:comment "(a) a dungeoneer’s pack or (b) an explorer’s pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#monk_starting_equipment_options
+:monk_starting_equipment_options rdf:type owl:NamedIndividual ,
+                                          :DnD_Entity ;
+                                 :hasChoice :monk_starting_equipment_option_1_choice ,
+                                            :monk_starting_equipment_option_2_choice .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#paladin
+:paladin rdf:type owl:NamedIndividual ,
+                  :DnD_Entity ;
+         :hasProficiency :all-armor ,
+                         :martial-weapons ,
+                         :saving-throw-cha ,
+                         :saving-throw-wis ,
+                         :shields ,
+                         :simple-weapons ;
+         :hasProficiencyChoice :paladin_proficiency_choice_1 ;
+         :hasSavingThrow :cha ,
+                         :wis ;
+         :hasStartingEquipment :paladin_starting_equipment ;
+         :hasStartingEquipmentOptions :paladin_starting_equipment_options ;
+         :hit_die "d10" ;
+         rdfs:label "Paladin" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#paladin_proficiency_choice_1
+:paladin_proficiency_choice_1 rdf:type owl:NamedIndividual ,
+                                       :DnD_Entity ;
+                              :hasOptionsArray :paladin_proficiency_choice_1_options_array ;
+                              :choose 2 ;
+                              :type "proficiencies" ;
+                              rdfs:comment "Choose two from Athletics, Insight, Intimidation, Medicine, Persuasion, and Religion" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#paladin_proficiency_choice_1_options_array
+:paladin_proficiency_choice_1_options_array rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :hasChoice :paladin_starting_equipment_option_1_choice_2 ,
+                                                       :paladin_starting_equipment_option_2_choice_2 ;
+                                            :hasOption :explorers-pack ,
+                                                       :javelin ,
+                                                       :priests-pack ,
+                                                       :skill-athletics ,
+                                                       :skill-insight ,
+                                                       :skill-intimidation ,
+                                                       :skill-medicine ,
+                                                       :skill-persuasion ,
+                                                       :skill-religion .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#paladin_starting_equipment
+:paladin_starting_equipment rdf:type owl:NamedIndividual ,
+                                     :DnD_Entity ;
+                            :hasEquipment :chain-mail .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#paladin_starting_equipment_option_1_choice
+:paladin_starting_equipment_option_1_choice rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :choose 1 ;
+                                            rdfs:comment "(a) a martial weapon and a shield or (b) two martial weapons" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#paladin_starting_equipment_option_1_choice_2
+:paladin_starting_equipment_option_1_choice_2 rdf:type owl:NamedIndividual ,
+                                                       :DnD_Entity ;
+                                              :choose 2 ;
+                                              rdfs:comment "two martial weapons" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#paladin_starting_equipment_option_2_choice
+:paladin_starting_equipment_option_2_choice rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :choose 1 ;
+                                            rdfs:comment "(a) five javelins or (b) any simple melee weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#paladin_starting_equipment_option_2_choice_2
+:paladin_starting_equipment_option_2_choice_2 rdf:type owl:NamedIndividual ,
+                                                       :DnD_Entity ;
+                                              :choose 1 ;
+                                              rdfs:comment "any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#paladin_starting_equipment_option_3_choice
+:paladin_starting_equipment_option_3_choice rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :choose 1 ;
+                                            rdfs:comment "(a) a priest’s pack or (b) an explorer’s pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#paladin_starting_equipment_option_4_choice
+:paladin_starting_equipment_option_4_choice rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :choose 1 ;
+                                            rdfs:comment "holy symbol" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#paladin_starting_equipment_options
+:paladin_starting_equipment_options rdf:type owl:NamedIndividual ,
+                                             :DnD_Entity ;
+                                    :hasChoice :paladin_starting_equipment_option_1_choice ,
+                                               :paladin_starting_equipment_option_2_choice ,
+                                               :paladin_starting_equipment_option_3_choice ,
+                                               :paladin_starting_equipment_option_4_choice .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#pan-flute
+:pan-flute rdf:type owl:NamedIndividual ,
+                    :DnD_Entity ;
+           :optionType "reference" ;
+           :url "/api/proficiencies/pan-flute" ;
+           rdfs:label "Pan flute" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#priests-pack
+:priests-pack rdf:type owl:NamedIndividual ,
+                       :DnD_Entity ;
+              :count 1 ;
+              :optionType "counted_reference" ;
+              :url "/api/equipment/priests-pack" ;
+              rdfs:label "Priest's Pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#quarterstaff
+:quarterstaff rdf:type owl:NamedIndividual ,
+                       :DnD_Entity ;
+              :count 1 ;
+              :optionType "counted_reference" ;
+              :url "/api/equipment/quarterstaff" ;
+              rdfs:label "Quarterstaff" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#quarterstaffs
+:quarterstaffs rdf:type owl:NamedIndividual ,
+                        :DnD_Entity ;
+               :url "/api/proficiencies/quarterstaffs" ;
+               rdfs:label "Quarterstaffs" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#ranger
+:ranger rdf:type owl:NamedIndividual ,
+                 :DnD_Entity ;
+        :hasProficiency :light-armor ,
+                        :martial-weapons ,
+                        :medium-armor ,
+                        :saving-throw-dex ,
+                        :saving-throw-str ,
+                        :shields ,
+                        :simple-weapons ;
+        :hasProficiencyChoice :ranger_proficiency_choice_1 ;
+        :hasSavingThrow :dex ,
+                        :str ;
+        :hasStartingEquipment :ranger_starting_equipment ;
+        :hasStartingEquipmentOptions :ranger_starting_equipment_options ;
+        :hit_die "d10" ;
+        rdfs:label "Ranger" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#ranger_proficiency_choice_1
+:ranger_proficiency_choice_1 rdf:type owl:NamedIndividual ,
+                                      :DnD_Entity ;
+                             :hasOptionsArray :ranger_proficiency_choice_1_options_array ;
+                             :choose 3 ;
+                             :type "proficiencies" ;
+                             rdfs:comment "Choose three from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, and Survival" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#ranger_proficiency_choice_1_options_array
+:ranger_proficiency_choice_1_options_array rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :hasChoice :ranger_starting_equipment_option_2_choice_2 ;
+                                           :hasOption :dungeoneers-pack ,
+                                                      :explorers-pack ,
+                                                      :leather-armor ,
+                                                      :scale-mail ,
+                                                      :shortsword ,
+                                                      :skill-animal-handling ,
+                                                      :skill-athletics ,
+                                                      :skill-insight ,
+                                                      :skill-investigation ,
+                                                      :skill-nature ,
+                                                      :skill-perception ,
+                                                      :skill-stealth ,
+                                                      :skill-survival .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#ranger_starting_equipment
+:ranger_starting_equipment rdf:type owl:NamedIndividual ,
+                                    :DnD_Entity ;
+                           :hasEquipment :arrow ,
+                                         :longbow .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#ranger_starting_equipment_option_1_choice
+:ranger_starting_equipment_option_1_choice rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :choose 1 ;
+                                           rdfs:comment "(a) scale mail or (b) leather armor" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#ranger_starting_equipment_option_2_choice
+:ranger_starting_equipment_option_2_choice rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :choose 1 ;
+                                           rdfs:comment "(a) two shortswords or (b) two simple melee weapons" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#ranger_starting_equipment_option_2_choice_2
+:ranger_starting_equipment_option_2_choice_2 rdf:type owl:NamedIndividual ,
+                                                      :DnD_Entity ;
+                                             :choose 2 ;
+                                             rdfs:comment "two simple melee weapons" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#ranger_starting_equipment_option_3_choice
+:ranger_starting_equipment_option_3_choice rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :choose 1 ;
+                                           rdfs:comment "(a) a dungeoneer’s pack or (b) an explorer’s pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#ranger_starting_equipment_options
+:ranger_starting_equipment_options rdf:type owl:NamedIndividual ,
+                                            :DnD_Entity ;
+                                   :hasChoice :ranger_starting_equipment_option_1_choice ,
+                                              :ranger_starting_equipment_option_2_choice ,
+                                              :ranger_starting_equipment_option_3_choice .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#rapier
+:rapier rdf:type owl:NamedIndividual ,
+                 :DnD_Entity ;
+        :count 1 ;
+        :optionType "counted_reference" ;
+        :url "/api/equipment/rapier" ;
+        rdfs:label "Rapier" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#rapiers
+:rapiers rdf:type owl:NamedIndividual ,
+                  :DnD_Entity ;
+         :url "/api/proficiencies/rapiers" ;
+         rdfs:label "Rapiers" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#rogue
+:rogue rdf:type owl:NamedIndividual ,
+                :DnD_Entity ;
+       :hasProficiency :hand-crossbows ,
+                       :light-armor ,
+                       :longswords ,
+                       :rapiers ,
+                       :saving-throw-dex ,
+                       :saving-throw-int ,
+                       :shortswords ,
+                       :simple-weapons ,
+                       :thieves-tools ;
+       :hasProficiencyChoice :rogue_proficiency_choice_1 ;
+       :hasSavingThrow :dex ,
+                       :int ;
+       :hasStartingEquipment :rogue_starting_equipment ;
+       :hasStartingEquipmentOptions :rogue_starting_equipment_options ;
+       :hit_die "d8" ;
+       rdfs:label "Rogue" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#rogue_proficiency_choice_1
+:rogue_proficiency_choice_1 rdf:type owl:NamedIndividual ,
+                                     :DnD_Entity ;
+                            :hasOptionsArray :rogue_proficiency_choice_1_options_array ;
+                            :choose 4 ;
+                            :type "proficiencies" ;
+                            rdfs:comment "Choose four from Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight of Hand, and Stealth" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#rogue_proficiency_choice_1_options_array
+:rogue_proficiency_choice_1_options_array rdf:type owl:NamedIndividual ,
+                                                   :DnD_Entity ;
+                                          :hasOption :burglars-pack ,
+                                                     :dungeoneers-pack ,
+                                                     :explorers-pack ,
+                                                     :rapier ,
+                                                     :shortsword ,
+                                                     :skill-acrobatics ,
+                                                     :skill-athletics ,
+                                                     :skill-deception ,
+                                                     :skill-insight ,
+                                                     :skill-intimidation ,
+                                                     :skill-investigation ,
+                                                     :skill-perception ,
+                                                     :skill-performance ,
+                                                     :skill-persuasion ,
+                                                     :skill-sleight-of-hand ,
+                                                     :skill-stealth .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#rogue_starting_equipment
+:rogue_starting_equipment rdf:type owl:NamedIndividual ,
+                                   :DnD_Entity ;
+                          :hasEquipment :dagger ,
+                                        :leather-armor ,
+                                        :thieves-tools .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#rogue_starting_equipment_option_1_choice
+:rogue_starting_equipment_option_1_choice rdf:type owl:NamedIndividual ,
+                                                   :DnD_Entity ;
+                                          :choose 1 ;
+                                          rdfs:comment "(a) a rapier or (b) a shortsword" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#rogue_starting_equipment_option_2_choice
+:rogue_starting_equipment_option_2_choice rdf:type owl:NamedIndividual ,
+                                                   :DnD_Entity ;
+                                          :choose 1 ;
+                                          rdfs:comment "(a) a shortbow and quiver of 20 arrows or (b) a shortsword" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#rogue_starting_equipment_option_3_choice
+:rogue_starting_equipment_option_3_choice rdf:type owl:NamedIndividual ,
+                                                   :DnD_Entity ;
+                                          :choose 1 ;
+                                          rdfs:comment "(a) a burglar’s pack, (b) a dungeoneer’s pack, or (c) an explorer’s pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#rogue_starting_equipment_options
+:rogue_starting_equipment_options rdf:type owl:NamedIndividual ,
+                                           :DnD_Entity ;
+                                  :hasChoice :rogue_starting_equipment_option_1_choice ,
+                                             :rogue_starting_equipment_option_2_choice ,
+                                             :rogue_starting_equipment_option_3_choice .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#saving-throw-cha
+:saving-throw-cha rdf:type owl:NamedIndividual ,
+                           :DnD_Entity ;
+                  :url "/api/proficiencies/saving-throw-cha" ;
+                  rdfs:label "Saving Throw: CHA" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#saving-throw-con
+:saving-throw-con rdf:type owl:NamedIndividual ,
+                           :DnD_Entity ;
+                  :url "/api/proficiencies/saving-throw-con" ;
+                  rdfs:label "Saving Throw: CON" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#saving-throw-dex
+:saving-throw-dex rdf:type owl:NamedIndividual ,
+                           :DnD_Entity ;
+                  :url "/api/proficiencies/saving-throw-dex" ;
+                  rdfs:label "Saving Throw: DEX" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#saving-throw-int
+:saving-throw-int rdf:type owl:NamedIndividual ,
+                           :DnD_Entity ;
+                  :url "/api/proficiencies/saving-throw-int" ;
+                  rdfs:label "Saving Throw: INT" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#saving-throw-str
+:saving-throw-str rdf:type owl:NamedIndividual ,
+                           :DnD_Entity ;
+                  :url "/api/proficiencies/saving-throw-str" ;
+                  rdfs:label "Saving Throw: STR" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#saving-throw-wis
+:saving-throw-wis rdf:type owl:NamedIndividual ,
+                           :DnD_Entity ;
+                  :url "/api/proficiencies/saving-throw-wis" ;
+                  rdfs:label "Saving Throw: WIS" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#scale-mail
+:scale-mail rdf:type owl:NamedIndividual ,
+                     :DnD_Entity ;
+            :count 1 ;
+            :optionType "counted_reference" ;
+            :url "/api/equipment/scale-mail" ;
+            rdfs:label "Scale Mail" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#scholars-pack
+:scholars-pack rdf:type owl:NamedIndividual ,
+                        :DnD_Entity ;
+               :count 1 ;
+               :optionType "counted_reference" ;
+               :url "/api/equipment/scholars-pack" ;
+               rdfs:label "Scholar's Pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#scimitar
+:scimitar rdf:type owl:NamedIndividual ,
+                   :DnD_Entity ;
+          :count 1 ;
+          :optionType "counted_reference" ;
+          :url "/api/equipment/scimitar" ;
+          rdfs:label "Scimitar" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#scimitars
+:scimitars rdf:type owl:NamedIndividual ,
+                    :DnD_Entity ;
+           :url "/api/proficiencies/scimitars" ;
+           rdfs:label "Scimitars" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#shawm
+:shawm rdf:type owl:NamedIndividual ,
+                :DnD_Entity ;
+       :optionType "reference" ;
+       :url "/api/proficiencies/shawm" ;
+       rdfs:label "Shawm" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#shield
+:shield rdf:type owl:NamedIndividual ,
+                 :DnD_Entity ;
+        :count 1 ;
+        :quantity 1 ;
+        :optionType "counted_reference" ;
+        :url "/api/equipment/shield" ;
+        rdfs:label "Shield" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#shields
+:shields rdf:type owl:NamedIndividual ,
+                  :DnD_Entity ;
+         :url "/api/proficiencies/shields" ;
+         rdfs:label "Shields" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#shortsword
+:shortsword rdf:type owl:NamedIndividual ,
+                     :DnD_Entity ;
+            :count 1 ,
+                   2 ;
+            :optionType "counted_reference" ;
+            :url "/api/equipment/shortsword" ;
+            rdfs:label "Shortsword" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#shortswords
+:shortswords rdf:type owl:NamedIndividual ,
+                      :DnD_Entity ;
+             :url "/api/proficiencies/shortswords" ;
+             rdfs:label "Shortswords" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#sickles
+:sickles rdf:type owl:NamedIndividual ,
+                  :DnD_Entity ;
+         :url "/api/proficiencies/sickles" ;
+         rdfs:label "Sickles" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#simple-weapons
+:simple-weapons rdf:type owl:NamedIndividual ,
+                         :DnD_Entity ;
+                :url "/api/proficiencies/simple-weapons" ;
+                rdfs:label "Simple Weapons" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-acrobatics
+:skill-acrobatics rdf:type owl:NamedIndividual ,
+                           :DnD_Entity ;
+                  :optionType "reference" ;
+                  :url "/api/proficiencies/skill-acrobatics" ;
+                  rdfs:label "Skill: Acrobatics" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-animal-handling
+:skill-animal-handling rdf:type owl:NamedIndividual ,
+                                :DnD_Entity ;
+                       :optionType "reference" ;
+                       :url "/api/proficiencies/skill-animal-handling" ;
+                       rdfs:label "Skill: Animal Handling" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-arcana
+:skill-arcana rdf:type owl:NamedIndividual ,
+                       :DnD_Entity ;
+              :optionType "reference" ;
+              :url "/api/proficiencies/skill-arcana" ;
+              rdfs:label "Skill: Arcana" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-athletics
+:skill-athletics rdf:type owl:NamedIndividual ,
+                          :DnD_Entity ;
+                 :optionType "reference" ;
+                 :url "/api/proficiencies/skill-athletics" ;
+                 rdfs:label "Skill: Athletics" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-deception
+:skill-deception rdf:type owl:NamedIndividual ,
+                          :DnD_Entity ;
+                 :optionType "reference" ;
+                 :url "/api/proficiencies/skill-deception" ;
+                 rdfs:label "Skill: Deception" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-history
+:skill-history rdf:type owl:NamedIndividual ,
+                        :DnD_Entity ;
+               :optionType "reference" ;
+               :url "/api/proficiencies/skill-history" ;
+               rdfs:label "Skill: History" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-insight
+:skill-insight rdf:type owl:NamedIndividual ,
+                        :DnD_Entity ;
+               :optionType "reference" ;
+               :url "/api/proficiencies/skill-insight" ;
+               rdfs:label "Skill: Insight" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-intimidation
+:skill-intimidation rdf:type owl:NamedIndividual ,
+                             :DnD_Entity ;
+                    :optionType "reference" ;
+                    :url "/api/proficiencies/skill-intimidation" ;
+                    rdfs:label "Skill: Intimidation" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-investigation
+:skill-investigation rdf:type owl:NamedIndividual ,
+                              :DnD_Entity ;
+                     :optionType "reference" ;
+                     :url "/api/proficiencies/skill-investigation" ;
+                     rdfs:label "Skill: Investigation" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-medicine
+:skill-medicine rdf:type owl:NamedIndividual ,
+                         :DnD_Entity ;
+                :optionType "reference" ;
+                :url "/api/proficiencies/skill-medicine" ;
+                rdfs:label "Skill: Medicine" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-nature
+:skill-nature rdf:type owl:NamedIndividual ,
+                       :DnD_Entity ;
+              :optionType "reference" ;
+              :url "/api/proficiencies/skill-nature" ;
+              rdfs:label "Skill: Nature" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-perception
+:skill-perception rdf:type owl:NamedIndividual ,
+                           :DnD_Entity ;
+                  :optionType "reference" ;
+                  :url "/api/proficiencies/skill-perception" ;
+                  rdfs:label "Skill: Perception" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-performance
+:skill-performance rdf:type owl:NamedIndividual ,
+                            :DnD_Entity ;
+                   :optionType "reference" ;
+                   :url "/api/proficiencies/skill-performance" ;
+                   rdfs:label "Skill: Performance" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-persuasion
+:skill-persuasion rdf:type owl:NamedIndividual ,
+                           :DnD_Entity ;
+                  :optionType "reference" ;
+                  :url "/api/proficiencies/skill-persuasion" ;
+                  rdfs:label "Skill: Persuasion" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-religion
+:skill-religion rdf:type owl:NamedIndividual ,
+                         :DnD_Entity ;
+                :optionType "reference" ;
+                :url "/api/proficiencies/skill-religion" ;
+                rdfs:label "Skill: Religion" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-sleight-of-hand
+:skill-sleight-of-hand rdf:type owl:NamedIndividual ,
+                                :DnD_Entity ;
+                       :optionType "reference" ;
+                       :url "/api/proficiencies/skill-sleight-of-hand" ;
+                       rdfs:label "Skill: Sleight of Hand" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-stealth
+:skill-stealth rdf:type owl:NamedIndividual ,
+                        :DnD_Entity ;
+               :optionType "reference" ;
+               :url "/api/proficiencies/skill-stealth" ;
+               rdfs:label "Skill: Stealth" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#skill-survival
+:skill-survival rdf:type owl:NamedIndividual ,
+                         :DnD_Entity ;
+                :optionType "reference" ;
+                :url "/api/proficiencies/skill-survival" ;
+                rdfs:label "Skill: Survival" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#slings
+:slings rdf:type owl:NamedIndividual ,
+                 :DnD_Entity ;
+        :url "/api/proficiencies/slings" ;
+        rdfs:label "Slings" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#sorcerer
+:sorcerer rdf:type owl:NamedIndividual ,
+                   :DnD_Entity ;
+          :hasProficiency :crossbows-light ,
+                          :daggers ,
+                          :darts ,
+                          :quarterstaffs ,
+                          :saving-throw-cha ,
+                          :saving-throw-con ,
+                          :slings ;
+          :hasProficiencyChoice :sorcerer_proficiency_choice_1 ;
+          :hasSavingThrow :cha ,
+                          :con ;
+          :hasStartingEquipment :sorcerer_starting_equipment ;
+          :hasStartingEquipmentOptions :sorcerer_starting_equipment_options ;
+          :hit_die "d6" ;
+          rdfs:label "Sorcerer" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#sorcerer_proficiency_choice_1
+:sorcerer_proficiency_choice_1 rdf:type owl:NamedIndividual ,
+                                        :DnD_Entity ;
+                               :hasOptionsArray :sorcerer_proficiency_choice_1_options_array ;
+                               :choose 2 ;
+                               :type "proficiencies" ;
+                               rdfs:comment "Choose two from Arcana, Deception, Insight, Intimidation, Persuasion, and Religion" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#sorcerer_proficiency_choice_1_options_array
+:sorcerer_proficiency_choice_1_options_array rdf:type owl:NamedIndividual ,
+                                                      :DnD_Entity ;
+                                             :hasChoice :sorcerer_starting_equipment_option_1_choice_2 ,
+                                                        :sorcerer_starting_equipment_option_2_choice_2 ;
+                                             :hasOption :component-pouch ,
+                                                        :dungeoneers-pack ,
+                                                        :explorers-pack ,
+                                                        :skill-arcana ,
+                                                        :skill-deception ,
+                                                        :skill-insight ,
+                                                        :skill-intimidation ,
+                                                        :skill-persuasion ,
+                                                        :skill-religion .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#sorcerer_starting_equipment
+:sorcerer_starting_equipment rdf:type owl:NamedIndividual ,
+                                      :DnD_Entity ;
+                             :hasEquipment :dagger .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#sorcerer_starting_equipment_option_1_choice
+:sorcerer_starting_equipment_option_1_choice rdf:type owl:NamedIndividual ,
+                                                      :DnD_Entity ;
+                                             :choose 1 ;
+                                             rdfs:comment "(a) a light crossbow and 20 bolts or (b) any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#sorcerer_starting_equipment_option_1_choice_2
+:sorcerer_starting_equipment_option_1_choice_2 rdf:type owl:NamedIndividual ,
+                                                        :DnD_Entity ;
+                                               :choose 1 ;
+                                               rdfs:comment "any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#sorcerer_starting_equipment_option_2_choice
+:sorcerer_starting_equipment_option_2_choice rdf:type owl:NamedIndividual ,
+                                                      :DnD_Entity ;
+                                             :choose 1 ;
+                                             rdfs:comment "(a) a component pouch or (b) an arcane focus" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#sorcerer_starting_equipment_option_2_choice_2
+:sorcerer_starting_equipment_option_2_choice_2 rdf:type owl:NamedIndividual ,
+                                                        :DnD_Entity ;
+                                               :choose 1 ;
+                                               rdfs:comment "arcane focus" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#sorcerer_starting_equipment_option_3_choice
+:sorcerer_starting_equipment_option_3_choice rdf:type owl:NamedIndividual ,
+                                                      :DnD_Entity ;
+                                             :choose 1 ;
+                                             rdfs:comment "(a) a dungeoneer’s pack or (b) an explorer’s pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#sorcerer_starting_equipment_options
+:sorcerer_starting_equipment_options rdf:type owl:NamedIndividual ,
+                                              :DnD_Entity ;
+                                     :hasChoice :sorcerer_starting_equipment_option_1_choice ,
+                                                :sorcerer_starting_equipment_option_2_choice ,
+                                                :sorcerer_starting_equipment_option_3_choice .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#spears
+:spears rdf:type owl:NamedIndividual ,
+                 :DnD_Entity ;
+        :url "/api/proficiencies/spears" ;
+        rdfs:label "Spears" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#spellbook
+:spellbook rdf:type owl:NamedIndividual ,
+                    :DnD_Entity ;
+           :quantity 1 ;
+           :url "/api/equipment/spellbook" ;
+           rdfs:label "Spellbook" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#str
+:str rdf:type owl:NamedIndividual ,
+              :DnD_Entity ;
+     :url "/api/ability-scores/str" ;
+     rdfs:label "STR" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#thieves-tools
+:thieves-tools rdf:type owl:NamedIndividual ,
+                        :DnD_Entity ;
+               :quantity 1 ;
+               :url "/api/equipment/thieves-tools" ,
+                    "/api/proficiencies/thieves-tools" ;
+               rdfs:label "Thieves' Tools" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#viol
+:viol rdf:type owl:NamedIndividual ,
+               :DnD_Entity ;
+      :optionType "reference" ;
+      :url "/api/proficiencies/viol" ;
+      rdfs:label "Viol" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#warhammer
+:warhammer rdf:type owl:NamedIndividual ,
+                    :DnD_Entity ;
+           :count 1 ;
+           :optionType "counted_reference" ;
+           :url "/api/equipment/warhammer" ;
+           rdfs:label "Warhammer" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#warlock
+:warlock rdf:type owl:NamedIndividual ,
+                  :DnD_Entity ;
+         :hasProficiency :light-armor ,
+                         :saving-throw-cha ,
+                         :saving-throw-wis ,
+                         :simple-weapons ;
+         :hasProficiencyChoice :warlock_proficiency_choice_1 ;
+         :hasSavingThrow :cha ,
+                         :wis ;
+         :hasStartingEquipment :warlock_starting_equipment ;
+         :hasStartingEquipmentOptions :warlock_starting_equipment_options ;
+         :hit_die "d8" ;
+         rdfs:label "Warlock" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#warlock_proficiency_choice_1
+:warlock_proficiency_choice_1 rdf:type owl:NamedIndividual ,
+                                       :DnD_Entity ;
+                              :hasOptionsArray :warlock_proficiency_choice_1_options_array ;
+                              :choose 2 ;
+                              :type "proficiencies" ;
+                              rdfs:comment "Choose two skills from Arcana, Deception, History, Intimidation, Investigation, Nature, and Religion" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#warlock_proficiency_choice_1_options_array
+:warlock_proficiency_choice_1_options_array rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :hasChoice :warlock_starting_equipment_option_1_choice_2 ,
+                                                       :warlock_starting_equipment_option_2_choice_2 ;
+                                            :hasOption :component-pouch ,
+                                                       :dungeoneers-pack ,
+                                                       :scholars-pack ,
+                                                       :skill-arcana ,
+                                                       :skill-deception ,
+                                                       :skill-history ,
+                                                       :skill-intimidation ,
+                                                       :skill-investigation ,
+                                                       :skill-nature ,
+                                                       :skill-religion .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#warlock_starting_equipment
+:warlock_starting_equipment rdf:type owl:NamedIndividual ,
+                                     :DnD_Entity ;
+                            :hasEquipment :dagger ,
+                                          :leather-armor .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#warlock_starting_equipment_option_1_choice
+:warlock_starting_equipment_option_1_choice rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :choose 1 ;
+                                            rdfs:comment "(a) a light crossbow and 20 bolts or (b) any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#warlock_starting_equipment_option_1_choice_2
+:warlock_starting_equipment_option_1_choice_2 rdf:type owl:NamedIndividual ,
+                                                       :DnD_Entity ;
+                                              :choose 1 ;
+                                              rdfs:comment "any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#warlock_starting_equipment_option_2_choice
+:warlock_starting_equipment_option_2_choice rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :choose 1 ;
+                                            rdfs:comment "(a) a component pouch or (b) an arcane focus" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#warlock_starting_equipment_option_2_choice_2
+:warlock_starting_equipment_option_2_choice_2 rdf:type owl:NamedIndividual ,
+                                                       :DnD_Entity ;
+                                              :choose 1 ;
+                                              rdfs:comment "arcane focus" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#warlock_starting_equipment_option_3_choice
+:warlock_starting_equipment_option_3_choice rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :choose 1 ;
+                                            rdfs:comment "(a) a scholar’s pack or (b) a dungeoneer’s pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#warlock_starting_equipment_option_4_choice
+:warlock_starting_equipment_option_4_choice rdf:type owl:NamedIndividual ,
+                                                     :DnD_Entity ;
+                                            :choose 1 ;
+                                            rdfs:comment "any simple weapon" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#warlock_starting_equipment_options
+:warlock_starting_equipment_options rdf:type owl:NamedIndividual ,
+                                             :DnD_Entity ;
+                                    :hasChoice :warlock_starting_equipment_option_1_choice ,
+                                               :warlock_starting_equipment_option_2_choice ,
+                                               :warlock_starting_equipment_option_3_choice ,
+                                               :warlock_starting_equipment_option_4_choice .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#wis
+:wis rdf:type owl:NamedIndividual ,
+              :DnD_Entity ;
+     :url "/api/ability-scores/wis" ;
+     rdfs:label "WIS" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#wizard
+:wizard rdf:type owl:NamedIndividual ,
+                 :DnD_Entity ;
+        :hasProficiency :crossbows-light ,
+                        :daggers ,
+                        :darts ,
+                        :quarterstaffs ,
+                        :saving-throw-int ,
+                        :saving-throw-wis ,
+                        :slings ;
+        :hasProficiencyChoice :wizard_proficiency_choice_1 ;
+        :hasSavingThrow :int ,
+                        :wis ;
+        :hasStartingEquipment :wizard_starting_equipment ;
+        :hasStartingEquipmentOptions :wizard_starting_equipment_options ;
+        :hit_die "d6" ;
+        rdfs:label "Wizard" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#wizard_proficiency_choice_1
+:wizard_proficiency_choice_1 rdf:type owl:NamedIndividual ,
+                                      :DnD_Entity ;
+                             :hasOptionsArray :wizard_proficiency_choice_1_options_array ;
+                             :choose 2 ;
+                             :type "proficiencies" ;
+                             rdfs:comment "Choose two from Arcana, History, Insight, Investigation, Medicine, and Religion" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#wizard_proficiency_choice_1_options_array
+:wizard_proficiency_choice_1_options_array rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :hasChoice :wizard_starting_equipment_option_2_choice_2 ;
+                                           :hasOption :component-pouch ,
+                                                      :dagger ,
+                                                      :explorers-pack ,
+                                                      :quarterstaff ,
+                                                      :scholars-pack ,
+                                                      :skill-arcana ,
+                                                      :skill-history ,
+                                                      :skill-insight ,
+                                                      :skill-investigation ,
+                                                      :skill-medicine ,
+                                                      :skill-religion .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#wizard_starting_equipment
+:wizard_starting_equipment rdf:type owl:NamedIndividual ,
+                                    :DnD_Entity ;
+                           :hasEquipment :spellbook .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#wizard_starting_equipment_option_1_choice
+:wizard_starting_equipment_option_1_choice rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :choose 1 ;
+                                           rdfs:comment "(a) a quarterstaff or (b) a dagger" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#wizard_starting_equipment_option_2_choice
+:wizard_starting_equipment_option_2_choice rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :choose 1 ;
+                                           rdfs:comment "(a) a component pouch or (b) an arcane focus" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#wizard_starting_equipment_option_2_choice_2
+:wizard_starting_equipment_option_2_choice_2 rdf:type owl:NamedIndividual ,
+                                                      :DnD_Entity ;
+                                             :choose 1 ;
+                                             rdfs:comment "arcane focus" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#wizard_starting_equipment_option_3_choice
+:wizard_starting_equipment_option_3_choice rdf:type owl:NamedIndividual ,
+                                                    :DnD_Entity ;
+                                           :choose 1 ;
+                                           rdfs:comment "(a) a scholar’s pack or (b) an explorer’s pack" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dnd5e/classes#wizard_starting_equipment_options
+:wizard_starting_equipment_options rdf:type owl:NamedIndividual ,
+                                            :DnD_Entity ;
+                                   :hasChoice :wizard_starting_equipment_option_1_choice ,
+                                              :wizard_starting_equipment_option_2_choice ,
+                                              :wizard_starting_equipment_option_3_choice .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
