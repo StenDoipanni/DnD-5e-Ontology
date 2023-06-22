@@ -1,0 +1,1289 @@
+@prefix : <http://www.ontologydesignpatterns.org/ont/dnd5e/classes#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:barbarian a :DnD_Entity ;
+    rdfs:label "Barbarian" ;
+    :hasProficiency :light-armor,
+        :martial-weapons,
+        :medium-armor,
+        :saving-throw-con,
+        :saving-throw-str,
+        :shields,
+        :simple-weapons ;
+    :hasProficiencyChoice :barbarian_proficiency_choice_1 ;
+    :hasSavingThrow :con,
+        :str ;
+    :hasStartingEquipment :barbarian_starting_equipment ;
+    :hasStartingEquipmentOptions :barbarian_starting_equipment_options ;
+    :hit_die "d12" .
+
+:bard a :DnD_Entity ;
+    rdfs:label "Bard" ;
+    :hasProficiency :hand-crossbows,
+        :light-armor,
+        :longswords,
+        :rapiers,
+        :saving-throw-cha,
+        :saving-throw-dex,
+        :shortswords,
+        :simple-weapons ;
+    :hasProficiencyChoice :bard_proficiency_choice_1,
+        :bard_proficiency_choice_2 ;
+    :hasSavingThrow :cha,
+        :dex ;
+    :hasStartingEquipment :bard_starting_equipment ;
+    :hasStartingEquipmentOptions :bard_starting_equipment_options ;
+    :hit_die "d8" .
+
+:choose a owl:DatatypeProperty,
+        owl:ObjectProperty .
+
+:cleric a :DnD_Entity ;
+    rdfs:label "Cleric" ;
+    :hasProficiency :light-armor,
+        :medium-armor,
+        :saving-throw-cha,
+        :saving-throw-wis,
+        :shields,
+        :simple-weapons ;
+    :hasProficiencyChoice :cleric_proficiency_choice_1 ;
+    :hasSavingThrow :cha,
+        :wis ;
+    :hasStartingEquipment :cleric_starting_equipment ;
+    :hasStartingEquipmentOptions :cleric_starting_equipment_options ;
+    :hit_die "d8" .
+
+:count a owl:DatatypeProperty .
+
+:druid a :DnD_Entity ;
+    rdfs:label "Druid" ;
+    :hasProficiency :clubs,
+        :daggers,
+        :darts,
+        :herbalism-kit,
+        :javelins,
+        :light-armor,
+        :maces,
+        :medium-armor,
+        :quarterstaffs,
+        :saving-throw-int,
+        :saving-throw-wis,
+        :scimitars,
+        :shields,
+        :sickles,
+        :slings,
+        :spears ;
+    :hasProficiencyChoice :druid_proficiency_choice_1 ;
+    :hasSavingThrow :int,
+        :wis ;
+    :hasStartingEquipment :druid_starting_equipment ;
+    :hasStartingEquipmentOptions :druid_starting_equipment_options ;
+    :hit_die "d8" .
+
+:fighter a :DnD_Entity ;
+    rdfs:label "Fighter" ;
+    :hasProficiency :all-armor,
+        :martial-weapons,
+        :saving-throw-con,
+        :saving-throw-str,
+        :shields,
+        :simple-weapons ;
+    :hasProficiencyChoice :fighter_proficiency_choice_1 ;
+    :hasSavingThrow :con,
+        :str ;
+    :hasStartingEquipment :fighter_starting_equipment ;
+    :hasStartingEquipmentOptions :fighter_starting_equipment_options ;
+    :hit_die "d10" .
+
+:hasChoice a owl:ObjectProperty .
+
+:hasEquipment a owl:ObjectProperty .
+
+:hasOption a owl:ObjectProperty .
+
+:hasOptionsArray a owl:ObjectProperty .
+
+:hasProficiency a owl:ObjectProperty .
+
+:hasProficiencyChoice a owl:ObjectProperty .
+
+:hasSavingThrow a owl:ObjectProperty .
+
+:hasStartingEquipment a owl:ObjectProperty .
+
+:hasStartingEquipmentOptions a owl:ObjectProperty .
+
+:hit_die a owl:DatatypeProperty .
+
+:monk a :DnD_Entity ;
+    rdfs:label "Monk" ;
+    :hasProficiency :saving-throw-dex,
+        :saving-throw-str,
+        :shortswords,
+        :simple-weapons ;
+    :hasProficiencyChoice :monk_proficiency_choice_1,
+        :monk_proficiency_choice_2 ;
+    :hasSavingThrow :dex,
+        :str ;
+    :hasStartingEquipment :monk_starting_equipment ;
+    :hasStartingEquipmentOptions :monk_starting_equipment_options ;
+    :hit_die "d8" .
+
+:paladin a :DnD_Entity ;
+    rdfs:label "Paladin" ;
+    :hasProficiency :all-armor,
+        :martial-weapons,
+        :saving-throw-cha,
+        :saving-throw-wis,
+        :shields,
+        :simple-weapons ;
+    :hasProficiencyChoice :paladin_proficiency_choice_1 ;
+    :hasSavingThrow :cha,
+        :wis ;
+    :hasStartingEquipment :paladin_starting_equipment ;
+    :hasStartingEquipmentOptions :paladin_starting_equipment_options ;
+    :hit_die "d10" .
+
+:quantity a owl:DatatypeProperty .
+
+:ranger a :DnD_Entity ;
+    rdfs:label "Ranger" ;
+    :hasProficiency :light-armor,
+        :martial-weapons,
+        :medium-armor,
+        :saving-throw-dex,
+        :saving-throw-str,
+        :shields,
+        :simple-weapons ;
+    :hasProficiencyChoice :ranger_proficiency_choice_1 ;
+    :hasSavingThrow :dex,
+        :str ;
+    :hasStartingEquipment :ranger_starting_equipment ;
+    :hasStartingEquipmentOptions :ranger_starting_equipment_options ;
+    :hit_die "d10" .
+
+:rogue a :DnD_Entity ;
+    rdfs:label "Rogue" ;
+    :hasProficiency :hand-crossbows,
+        :light-armor,
+        :longswords,
+        :rapiers,
+        :saving-throw-dex,
+        :saving-throw-int,
+        :shortswords,
+        :simple-weapons,
+        :thieves-tools ;
+    :hasProficiencyChoice :rogue_proficiency_choice_1 ;
+    :hasSavingThrow :dex,
+        :int ;
+    :hasStartingEquipment :rogue_starting_equipment ;
+    :hasStartingEquipmentOptions :rogue_starting_equipment_options ;
+    :hit_die "d8" .
+
+:sorcerer a :DnD_Entity ;
+    rdfs:label "Sorcerer" ;
+    :hasProficiency :crossbows-light,
+        :daggers,
+        :darts,
+        :quarterstaffs,
+        :saving-throw-cha,
+        :saving-throw-con,
+        :slings ;
+    :hasProficiencyChoice :sorcerer_proficiency_choice_1 ;
+    :hasSavingThrow :cha,
+        :con ;
+    :hasStartingEquipment :sorcerer_starting_equipment ;
+    :hasStartingEquipmentOptions :sorcerer_starting_equipment_options ;
+    :hit_die "d6" .
+
+:warlock a :DnD_Entity ;
+    rdfs:label "Warlock" ;
+    :hasProficiency :light-armor,
+        :saving-throw-cha,
+        :saving-throw-wis,
+        :simple-weapons ;
+    :hasProficiencyChoice :warlock_proficiency_choice_1 ;
+    :hasSavingThrow :cha,
+        :wis ;
+    :hasStartingEquipment :warlock_starting_equipment ;
+    :hasStartingEquipmentOptions :warlock_starting_equipment_options ;
+    :hit_die "d8" .
+
+:wizard a :DnD_Entity ;
+    rdfs:label "Wizard" ;
+    :hasProficiency :crossbows-light,
+        :daggers,
+        :darts,
+        :quarterstaffs,
+        :saving-throw-int,
+        :saving-throw-wis,
+        :slings ;
+    :hasProficiencyChoice :wizard_proficiency_choice_1 ;
+    :hasSavingThrow :int,
+        :wis ;
+    :hasStartingEquipment :wizard_starting_equipment ;
+    :hasStartingEquipmentOptions :wizard_starting_equipment_options ;
+    :hit_die "d6" .
+
+:arrow a :DnD_Entity ;
+    rdfs:label "Arrow" ;
+    :quantity 20 ;
+    :url "/api/equipment/arrow" .
+
+:bagpipes a :DnD_Entity ;
+    rdfs:label "Bagpipes" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/bagpipes" .
+
+:barbarian_proficiency_choice_1 a :DnD_Entity,
+        "proficiencies" ;
+    :choose 2 ;
+    :hasOptionsArray :barbarian_proficiency_choice_1_options_array ;
+    rdfs:comment "Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival" .
+
+:barbarian_proficiency_choice_1_options_array a :DnD_Entity ;
+    :hasChoice :barbarian_starting_equipment_option_1_choice_2,
+        :barbarian_starting_equipment_option_2_choice_2 ;
+    :hasOption :greataxe,
+        :handaxe,
+        :skill-animal-handling,
+        :skill-athletics,
+        :skill-intimidation,
+        :skill-nature,
+        :skill-perception,
+        :skill-survival .
+
+:barbarian_starting_equipment a :DnD_Entity ;
+    :hasEquipment :explorers-pack,
+        :javelin .
+
+:barbarian_starting_equipment_option_1_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a greataxe or (b) any martial melee weapon" .
+
+:barbarian_starting_equipment_option_1_choice_2 a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "any martial melee weapon" .
+
+:barbarian_starting_equipment_option_2_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) two handaxes or (b) any simple weapon" .
+
+:barbarian_starting_equipment_option_2_choice_2 a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "any simple weapon" .
+
+:barbarian_starting_equipment_options a :DnD_Entity ;
+    :hasChoice :barbarian_starting_equipment_option_1_choice,
+        :barbarian_starting_equipment_option_2_choice .
+
+:bard_proficiency_choice_1 a :DnD_Entity,
+        "proficiencies" ;
+    :choose 3 ;
+    :hasOptionsArray :bard_proficiency_choice_1_options_array ;
+    rdfs:comment "Choose any three" .
+
+:bard_proficiency_choice_1_options_array a :DnD_Entity ;
+    :hasOption :skill-acrobatics,
+        :skill-animal-handling,
+        :skill-arcana,
+        :skill-athletics,
+        :skill-deception,
+        :skill-history,
+        :skill-insight,
+        :skill-intimidation,
+        :skill-investigation,
+        :skill-medicine,
+        :skill-nature,
+        :skill-perception,
+        :skill-performance,
+        :skill-persuasion,
+        :skill-religion,
+        :skill-sleight-of-hand,
+        :skill-stealth,
+        :skill-survival .
+
+:bard_proficiency_choice_2 a :DnD_Entity,
+        "proficiencies" ;
+    :choose 3 ;
+    :hasOptionsArray :bard_proficiency_choice_2_options_array ;
+    rdfs:comment "Three musical instruments of your choice" .
+
+:bard_proficiency_choice_2_options_array a :DnD_Entity ;
+    :hasChoice :bard_starting_equipment_option_1_choice_3,
+        :bard_starting_equipment_option_3_choice_2 ;
+    :hasOption :bagpipes,
+        :diplomats-pack,
+        :drum,
+        :dulcimer,
+        :entertainers-pack,
+        :flute,
+        :horn,
+        :longsword,
+        :lute,
+        :lyre,
+        :pan-flute,
+        :rapier,
+        :shawm,
+        :viol .
+
+:bard_starting_equipment a :DnD_Entity ;
+    :hasEquipment :dagger,
+        :leather-armor .
+
+:bard_starting_equipment_option_1_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a rapier, (b) a longsword, or (c) any simple weapon" .
+
+:bard_starting_equipment_option_1_choice_3 a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "any simple weapon" .
+
+:bard_starting_equipment_option_2_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a diplomat’s pack or (b) an entertainer’s pack" .
+
+:bard_starting_equipment_option_3_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a lute or (b) any other musical instrument" .
+
+:bard_starting_equipment_option_3_choice_2 a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "any other musical instrument" .
+
+:bard_starting_equipment_options a :DnD_Entity ;
+    :hasChoice :bard_starting_equipment_option_1_choice,
+        :bard_starting_equipment_option_2_choice,
+        :bard_starting_equipment_option_3_choice .
+
+:burglars-pack a :DnD_Entity ;
+    rdfs:label "Burglar's Pack" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/burglars-pack" .
+
+:cleric_proficiency_choice_1 a :DnD_Entity,
+        "proficiencies" ;
+    :choose 2 ;
+    :hasOptionsArray :cleric_proficiency_choice_1_options_array ;
+    rdfs:comment "Choose two from History, Insight, Medicine, Persuasion, and Religion" .
+
+:cleric_proficiency_choice_1_options_array a :DnD_Entity ;
+    :hasChoice :cleric_starting_equipment_option_3_choice_2 ;
+    :hasOption :chain-mail,
+        :explorers-pack,
+        :leather-armor,
+        :mace,
+        :priests-pack,
+        :scale-mail,
+        :skill-history,
+        :skill-insight,
+        :skill-medicine,
+        :skill-persuasion,
+        :skill-religion,
+        :warhammer .
+
+:cleric_starting_equipment a :DnD_Entity ;
+    :hasEquipment :shield .
+
+:cleric_starting_equipment_option_1_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a mace or (b) a warhammer (if proficient)" .
+
+:cleric_starting_equipment_option_2_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) scale mail, (b) leather armor, or (c) chain mail (if proficient)" .
+
+:cleric_starting_equipment_option_3_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a light crossbow and 20 bolts or (b) any simple weapon" .
+
+:cleric_starting_equipment_option_3_choice_2 a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "any simple weapon" .
+
+:cleric_starting_equipment_option_4_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a priest’s pack or (b) an explorer’s pack" .
+
+:cleric_starting_equipment_option_5_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "holy symbol" .
+
+:cleric_starting_equipment_options a :DnD_Entity ;
+    :hasChoice :cleric_starting_equipment_option_1_choice,
+        :cleric_starting_equipment_option_2_choice,
+        :cleric_starting_equipment_option_3_choice,
+        :cleric_starting_equipment_option_4_choice,
+        :cleric_starting_equipment_option_5_choice .
+
+:clubs a :DnD_Entity ;
+    rdfs:label "Clubs" ;
+    :url "/api/proficiencies/clubs" .
+
+:dart a :DnD_Entity ;
+    rdfs:label "Dart" ;
+    :quantity 10 ;
+    :url "/api/equipment/dart" .
+
+:diplomats-pack a :DnD_Entity ;
+    rdfs:label "Diplomat's Pack" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/diplomats-pack" .
+
+:druid_proficiency_choice_1 a :DnD_Entity,
+        "proficiencies" ;
+    :choose 2 ;
+    :hasOptionsArray :druid_proficiency_choice_1_options_array ;
+    rdfs:comment "Choose two from Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, and Survival" .
+
+:druid_proficiency_choice_1_options_array a :DnD_Entity ;
+    :hasChoice :druid_starting_equipment_option_1_choice_2,
+        :druid_starting_equipment_option_2_choice_2 ;
+    :hasOption :scimitar,
+        :shield,
+        :skill-animal-handling,
+        :skill-arcana,
+        :skill-insight,
+        :skill-medicine,
+        :skill-nature,
+        :skill-perception,
+        :skill-religion,
+        :skill-survival .
+
+:druid_starting_equipment a :DnD_Entity ;
+    :hasEquipment :explorers-pack,
+        :leather-armor .
+
+:druid_starting_equipment_option_1_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a wooden shield or (b) any simple weapon" .
+
+:druid_starting_equipment_option_1_choice_2 a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "any simple weapon" .
+
+:druid_starting_equipment_option_2_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a scimitar or (b) any simple melee weapon" .
+
+:druid_starting_equipment_option_2_choice_2 a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "any simple melee weapon" .
+
+:druid_starting_equipment_option_3_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "druidic focus" .
+
+:druid_starting_equipment_options a :DnD_Entity ;
+    :hasChoice :druid_starting_equipment_option_1_choice,
+        :druid_starting_equipment_option_2_choice,
+        :druid_starting_equipment_option_3_choice .
+
+:drum a :DnD_Entity ;
+    rdfs:label "Drum" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/drum" .
+
+:dulcimer a :DnD_Entity ;
+    rdfs:label "Dulcimer" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/dulcimer" .
+
+:entertainers-pack a :DnD_Entity ;
+    rdfs:label "Entertainer's Pack" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/entertainers-pack" .
+
+:fighter_proficiency_choice_1 a :DnD_Entity,
+        "proficiencies" ;
+    :choose 2 ;
+    :hasOptionsArray :fighter_proficiency_choice_1_options_array ;
+    rdfs:comment "Choose two skills from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, and Survival" .
+
+:fighter_proficiency_choice_1_options_array a :DnD_Entity ;
+    :hasChoice :fighter_starting_equipment_option_2_choice_2 ;
+    :hasOption :chain-mail,
+        :dungeoneers-pack,
+        :explorers-pack,
+        :handaxe,
+        :skill-acrobatics,
+        :skill-animal-handling,
+        :skill-athletics,
+        :skill-history,
+        :skill-insight,
+        :skill-intimidation,
+        :skill-perception,
+        :skill-survival .
+
+:fighter_starting_equipment a :DnD_Entity .
+
+:fighter_starting_equipment_option_1_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) chain mail or (b) leather armor, longbow, and 20 arrows" .
+
+:fighter_starting_equipment_option_2_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a martial weapon and a shield or (b) two martial weapons" .
+
+:fighter_starting_equipment_option_2_choice_2 a :DnD_Entity ;
+    :choose 2 ;
+    rdfs:comment "two martial weapons" .
+
+:fighter_starting_equipment_option_3_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a light crossbow and 20 bolts or (b) two handaxes" .
+
+:fighter_starting_equipment_option_4_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a dungeoneer’s pack or (b) an explorer’s pack" .
+
+:fighter_starting_equipment_options a :DnD_Entity ;
+    :hasChoice :fighter_starting_equipment_option_1_choice,
+        :fighter_starting_equipment_option_2_choice,
+        :fighter_starting_equipment_option_3_choice,
+        :fighter_starting_equipment_option_4_choice .
+
+:flute a :DnD_Entity ;
+    rdfs:label "Flute" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/flute" .
+
+:greataxe a :DnD_Entity ;
+    rdfs:label "Greataxe" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/greataxe" .
+
+:herbalism-kit a :DnD_Entity ;
+    rdfs:label "Herbalism Kit" ;
+    :url "/api/proficiencies/herbalism-kit" .
+
+:horn a :DnD_Entity ;
+    rdfs:label "Horn" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/horn" .
+
+:javelins a :DnD_Entity ;
+    rdfs:label "Javelins" ;
+    :url "/api/proficiencies/javelins" .
+
+:longbow a :DnD_Entity ;
+    rdfs:label "Longbow" ;
+    :quantity 1 ;
+    :url "/api/equipment/longbow" .
+
+:longsword a :DnD_Entity ;
+    rdfs:label "Longsword" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/longsword" .
+
+:lute a :DnD_Entity ;
+    rdfs:label "Lute" ;
+    :count 1 ;
+    :optionType "counted_reference",
+        "reference" ;
+    :url "/api/equipment/lute",
+        "/api/proficiencies/lute" .
+
+:lyre a :DnD_Entity ;
+    rdfs:label "Lyre" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/lyre" .
+
+:mace a :DnD_Entity ;
+    rdfs:label "Mace" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/mace" .
+
+:maces a :DnD_Entity ;
+    rdfs:label "Maces" ;
+    :url "/api/proficiencies/maces" .
+
+:monk_proficiency_choice_1 a :DnD_Entity,
+        "proficiencies" ;
+    :choose 2 ;
+    :hasOptionsArray :monk_proficiency_choice_1_options_array ;
+    rdfs:comment "Choose two from Acrobatics, Athletics, History, Insight, Religion, and Stealth" .
+
+:monk_proficiency_choice_1_options_array a :DnD_Entity ;
+    :hasOption :skill-acrobatics,
+        :skill-athletics,
+        :skill-history,
+        :skill-insight,
+        :skill-religion,
+        :skill-stealth .
+
+:monk_proficiency_choice_2 a :DnD_Entity,
+        "proficiencies" ;
+    :choose 1 ;
+    :hasOptionsArray :monk_proficiency_choice_2_options_array ;
+    rdfs:comment "Choose one type of artisan’s tools or one musical instrument" .
+
+:monk_proficiency_choice_2_options_array a :DnD_Entity ;
+    :hasChoice :monk_starting_equipment_option_1_choice_2 ;
+    :hasOption :dungeoneers-pack,
+        :explorers-pack,
+        :shortsword .
+
+:monk_starting_equipment a :DnD_Entity ;
+    :hasEquipment :dart .
+
+:monk_starting_equipment_option_1_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a shortsword or (b) any simple weapon" .
+
+:monk_starting_equipment_option_1_choice_2 a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "any simple weapon" .
+
+:monk_starting_equipment_option_2_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a dungeoneer’s pack or (b) an explorer’s pack" .
+
+:monk_starting_equipment_options a :DnD_Entity ;
+    :hasChoice :monk_starting_equipment_option_1_choice,
+        :monk_starting_equipment_option_2_choice .
+
+:paladin_proficiency_choice_1 a :DnD_Entity,
+        "proficiencies" ;
+    :choose 2 ;
+    :hasOptionsArray :paladin_proficiency_choice_1_options_array ;
+    rdfs:comment "Choose two from Athletics, Insight, Intimidation, Medicine, Persuasion, and Religion" .
+
+:paladin_proficiency_choice_1_options_array a :DnD_Entity ;
+    :hasChoice :paladin_starting_equipment_option_1_choice_2,
+        :paladin_starting_equipment_option_2_choice_2 ;
+    :hasOption :explorers-pack,
+        :javelin,
+        :priests-pack,
+        :skill-athletics,
+        :skill-insight,
+        :skill-intimidation,
+        :skill-medicine,
+        :skill-persuasion,
+        :skill-religion .
+
+:paladin_starting_equipment a :DnD_Entity ;
+    :hasEquipment :chain-mail .
+
+:paladin_starting_equipment_option_1_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a martial weapon and a shield or (b) two martial weapons" .
+
+:paladin_starting_equipment_option_1_choice_2 a :DnD_Entity ;
+    :choose 2 ;
+    rdfs:comment "two martial weapons" .
+
+:paladin_starting_equipment_option_2_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) five javelins or (b) any simple melee weapon" .
+
+:paladin_starting_equipment_option_2_choice_2 a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "any simple weapon" .
+
+:paladin_starting_equipment_option_3_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a priest’s pack or (b) an explorer’s pack" .
+
+:paladin_starting_equipment_option_4_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "holy symbol" .
+
+:paladin_starting_equipment_options a :DnD_Entity ;
+    :hasChoice :paladin_starting_equipment_option_1_choice,
+        :paladin_starting_equipment_option_2_choice,
+        :paladin_starting_equipment_option_3_choice,
+        :paladin_starting_equipment_option_4_choice .
+
+:pan-flute a :DnD_Entity ;
+    rdfs:label "Pan flute" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/pan-flute" .
+
+:quarterstaff a :DnD_Entity ;
+    rdfs:label "Quarterstaff" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/quarterstaff" .
+
+:ranger_proficiency_choice_1 a :DnD_Entity,
+        "proficiencies" ;
+    :choose 3 ;
+    :hasOptionsArray :ranger_proficiency_choice_1_options_array ;
+    rdfs:comment "Choose three from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, and Survival" .
+
+:ranger_proficiency_choice_1_options_array a :DnD_Entity ;
+    :hasChoice :ranger_starting_equipment_option_2_choice_2 ;
+    :hasOption :dungeoneers-pack,
+        :explorers-pack,
+        :leather-armor,
+        :scale-mail,
+        :shortsword,
+        :skill-animal-handling,
+        :skill-athletics,
+        :skill-insight,
+        :skill-investigation,
+        :skill-nature,
+        :skill-perception,
+        :skill-stealth,
+        :skill-survival .
+
+:ranger_starting_equipment a :DnD_Entity ;
+    :hasEquipment :arrow,
+        :longbow .
+
+:ranger_starting_equipment_option_1_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) scale mail or (b) leather armor" .
+
+:ranger_starting_equipment_option_2_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) two shortswords or (b) two simple melee weapons" .
+
+:ranger_starting_equipment_option_2_choice_2 a :DnD_Entity ;
+    :choose 2 ;
+    rdfs:comment "two simple melee weapons" .
+
+:ranger_starting_equipment_option_3_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a dungeoneer’s pack or (b) an explorer’s pack" .
+
+:ranger_starting_equipment_options a :DnD_Entity ;
+    :hasChoice :ranger_starting_equipment_option_1_choice,
+        :ranger_starting_equipment_option_2_choice,
+        :ranger_starting_equipment_option_3_choice .
+
+:rogue_proficiency_choice_1 a :DnD_Entity,
+        "proficiencies" ;
+    :choose 4 ;
+    :hasOptionsArray :rogue_proficiency_choice_1_options_array ;
+    rdfs:comment "Choose four from Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight of Hand, and Stealth" .
+
+:rogue_proficiency_choice_1_options_array a :DnD_Entity ;
+    :hasOption :burglars-pack,
+        :dungeoneers-pack,
+        :explorers-pack,
+        :rapier,
+        :shortsword,
+        :skill-acrobatics,
+        :skill-athletics,
+        :skill-deception,
+        :skill-insight,
+        :skill-intimidation,
+        :skill-investigation,
+        :skill-perception,
+        :skill-performance,
+        :skill-persuasion,
+        :skill-sleight-of-hand,
+        :skill-stealth .
+
+:rogue_starting_equipment a :DnD_Entity ;
+    :hasEquipment :dagger,
+        :leather-armor,
+        :thieves-tools .
+
+:rogue_starting_equipment_option_1_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a rapier or (b) a shortsword" .
+
+:rogue_starting_equipment_option_2_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a shortbow and quiver of 20 arrows or (b) a shortsword" .
+
+:rogue_starting_equipment_option_3_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a burglar’s pack, (b) a dungeoneer’s pack, or (c) an explorer’s pack" .
+
+:rogue_starting_equipment_options a :DnD_Entity ;
+    :hasChoice :rogue_starting_equipment_option_1_choice,
+        :rogue_starting_equipment_option_2_choice,
+        :rogue_starting_equipment_option_3_choice .
+
+:scimitar a :DnD_Entity ;
+    rdfs:label "Scimitar" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/scimitar" .
+
+:scimitars a :DnD_Entity ;
+    rdfs:label "Scimitars" ;
+    :url "/api/proficiencies/scimitars" .
+
+:shawm a :DnD_Entity ;
+    rdfs:label "Shawm" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/shawm" .
+
+:sickles a :DnD_Entity ;
+    rdfs:label "Sickles" ;
+    :url "/api/proficiencies/sickles" .
+
+:sorcerer_proficiency_choice_1 a :DnD_Entity,
+        "proficiencies" ;
+    :choose 2 ;
+    :hasOptionsArray :sorcerer_proficiency_choice_1_options_array ;
+    rdfs:comment "Choose two from Arcana, Deception, Insight, Intimidation, Persuasion, and Religion" .
+
+:sorcerer_proficiency_choice_1_options_array a :DnD_Entity ;
+    :hasChoice :sorcerer_starting_equipment_option_1_choice_2,
+        :sorcerer_starting_equipment_option_2_choice_2 ;
+    :hasOption :component-pouch,
+        :dungeoneers-pack,
+        :explorers-pack,
+        :skill-arcana,
+        :skill-deception,
+        :skill-insight,
+        :skill-intimidation,
+        :skill-persuasion,
+        :skill-religion .
+
+:sorcerer_starting_equipment a :DnD_Entity ;
+    :hasEquipment :dagger .
+
+:sorcerer_starting_equipment_option_1_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a light crossbow and 20 bolts or (b) any simple weapon" .
+
+:sorcerer_starting_equipment_option_1_choice_2 a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "any simple weapon" .
+
+:sorcerer_starting_equipment_option_2_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a component pouch or (b) an arcane focus" .
+
+:sorcerer_starting_equipment_option_2_choice_2 a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "arcane focus" .
+
+:sorcerer_starting_equipment_option_3_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a dungeoneer’s pack or (b) an explorer’s pack" .
+
+:sorcerer_starting_equipment_options a :DnD_Entity ;
+    :hasChoice :sorcerer_starting_equipment_option_1_choice,
+        :sorcerer_starting_equipment_option_2_choice,
+        :sorcerer_starting_equipment_option_3_choice .
+
+:spears a :DnD_Entity ;
+    rdfs:label "Spears" ;
+    :url "/api/proficiencies/spears" .
+
+:spellbook a :DnD_Entity ;
+    rdfs:label "Spellbook" ;
+    :quantity 1 ;
+    :url "/api/equipment/spellbook" .
+
+:viol a :DnD_Entity ;
+    rdfs:label "Viol" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/viol" .
+
+:warhammer a :DnD_Entity ;
+    rdfs:label "Warhammer" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/warhammer" .
+
+:warlock_proficiency_choice_1 a :DnD_Entity,
+        "proficiencies" ;
+    :choose 2 ;
+    :hasOptionsArray :warlock_proficiency_choice_1_options_array ;
+    rdfs:comment "Choose two skills from Arcana, Deception, History, Intimidation, Investigation, Nature, and Religion" .
+
+:warlock_proficiency_choice_1_options_array a :DnD_Entity ;
+    :hasChoice :warlock_starting_equipment_option_1_choice_2,
+        :warlock_starting_equipment_option_2_choice_2 ;
+    :hasOption :component-pouch,
+        :dungeoneers-pack,
+        :scholars-pack,
+        :skill-arcana,
+        :skill-deception,
+        :skill-history,
+        :skill-intimidation,
+        :skill-investigation,
+        :skill-nature,
+        :skill-religion .
+
+:warlock_starting_equipment a :DnD_Entity ;
+    :hasEquipment :dagger,
+        :leather-armor .
+
+:warlock_starting_equipment_option_1_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a light crossbow and 20 bolts or (b) any simple weapon" .
+
+:warlock_starting_equipment_option_1_choice_2 a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "any simple weapon" .
+
+:warlock_starting_equipment_option_2_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a component pouch or (b) an arcane focus" .
+
+:warlock_starting_equipment_option_2_choice_2 a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "arcane focus" .
+
+:warlock_starting_equipment_option_3_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a scholar’s pack or (b) a dungeoneer’s pack" .
+
+:warlock_starting_equipment_option_4_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "any simple weapon" .
+
+:warlock_starting_equipment_options a :DnD_Entity ;
+    :hasChoice :warlock_starting_equipment_option_1_choice,
+        :warlock_starting_equipment_option_2_choice,
+        :warlock_starting_equipment_option_3_choice,
+        :warlock_starting_equipment_option_4_choice .
+
+:wizard_proficiency_choice_1 a :DnD_Entity,
+        "proficiencies" ;
+    :choose 2 ;
+    :hasOptionsArray :wizard_proficiency_choice_1_options_array ;
+    rdfs:comment "Choose two from Arcana, History, Insight, Investigation, Medicine, and Religion" .
+
+:wizard_proficiency_choice_1_options_array a :DnD_Entity ;
+    :hasChoice :wizard_starting_equipment_option_2_choice_2 ;
+    :hasOption :component-pouch,
+        :dagger,
+        :explorers-pack,
+        :quarterstaff,
+        :scholars-pack,
+        :skill-arcana,
+        :skill-history,
+        :skill-insight,
+        :skill-investigation,
+        :skill-medicine,
+        :skill-religion .
+
+:wizard_starting_equipment a :DnD_Entity ;
+    :hasEquipment :spellbook .
+
+:wizard_starting_equipment_option_1_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a quarterstaff or (b) a dagger" .
+
+:wizard_starting_equipment_option_2_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a component pouch or (b) an arcane focus" .
+
+:wizard_starting_equipment_option_2_choice_2 a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "arcane focus" .
+
+:wizard_starting_equipment_option_3_choice a :DnD_Entity ;
+    :choose 1 ;
+    rdfs:comment "(a) a scholar’s pack or (b) an explorer’s pack" .
+
+:wizard_starting_equipment_options a :DnD_Entity ;
+    :hasChoice :wizard_starting_equipment_option_1_choice,
+        :wizard_starting_equipment_option_2_choice,
+        :wizard_starting_equipment_option_3_choice .
+
+:all-armor a :DnD_Entity ;
+    rdfs:label "All armor" ;
+    :url "/api/proficiencies/all-armor" .
+
+:crossbows-light a :DnD_Entity ;
+    rdfs:label "Crossbows, light" ;
+    :url "/api/proficiencies/crossbows-light" .
+
+:hand-crossbows a :DnD_Entity ;
+    rdfs:label "Hand crossbows" ;
+    :url "/api/proficiencies/hand-crossbows" .
+
+:handaxe a :DnD_Entity ;
+    rdfs:label "Handaxe" ;
+    :count 2 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/handaxe" .
+
+:javelin a :DnD_Entity ;
+    rdfs:label "Javelin" ;
+    :count 5 ;
+    :optionType "counted_reference" ;
+    :quantity 4 ;
+    :url "/api/equipment/javelin" .
+
+:longswords a :DnD_Entity ;
+    rdfs:label "Longswords" ;
+    :url "/api/proficiencies/longswords" .
+
+:priests-pack a :DnD_Entity ;
+    rdfs:label "Priest's Pack" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/priests-pack" .
+
+:rapier a :DnD_Entity ;
+    rdfs:label "Rapier" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/rapier" .
+
+:rapiers a :DnD_Entity ;
+    rdfs:label "Rapiers" ;
+    :url "/api/proficiencies/rapiers" .
+
+:scale-mail a :DnD_Entity ;
+    rdfs:label "Scale Mail" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/scale-mail" .
+
+:scholars-pack a :DnD_Entity ;
+    rdfs:label "Scholar's Pack" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/scholars-pack" .
+
+:shield a :DnD_Entity ;
+    rdfs:label "Shield" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :quantity 1 ;
+    :url "/api/equipment/shield" .
+
+:skill-performance a :DnD_Entity ;
+    rdfs:label "Skill: Performance" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-performance" .
+
+:skill-sleight-of-hand a :DnD_Entity ;
+    rdfs:label "Skill: Sleight of Hand" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-sleight-of-hand" .
+
+:thieves-tools a :DnD_Entity ;
+    rdfs:label "Thieves' Tools" ;
+    :quantity 1 ;
+    :url "/api/equipment/thieves-tools",
+        "/api/proficiencies/thieves-tools" .
+
+:chain-mail a :DnD_Entity ;
+    rdfs:label "Chain Mail" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :quantity 1 ;
+    :url "/api/equipment/chain-mail" .
+
+:component-pouch a :DnD_Entity ;
+    rdfs:label "Component pouch" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/component-pouch" .
+
+:con a :DnD_Entity ;
+    rdfs:label "CON" ;
+    :url "/api/ability-scores/con" .
+
+:daggers a :DnD_Entity ;
+    rdfs:label "Daggers" ;
+    :url "/api/proficiencies/daggers" .
+
+:darts a :DnD_Entity ;
+    rdfs:label "Darts" ;
+    :url "/api/proficiencies/darts" .
+
+:int a :DnD_Entity ;
+    rdfs:label "INT" ;
+    :url "/api/ability-scores/int" .
+
+:quarterstaffs a :DnD_Entity ;
+    rdfs:label "Quarterstaffs" ;
+    :url "/api/proficiencies/quarterstaffs" .
+
+:saving-throw-con a :DnD_Entity ;
+    rdfs:label "Saving Throw: CON" ;
+    :url "/api/proficiencies/saving-throw-con" .
+
+:saving-throw-int a :DnD_Entity ;
+    rdfs:label "Saving Throw: INT" ;
+    :url "/api/proficiencies/saving-throw-int" .
+
+:shortsword a :DnD_Entity ;
+    rdfs:label "Shortsword" ;
+    :count 1,
+        2 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/shortsword" .
+
+:shortswords a :DnD_Entity ;
+    rdfs:label "Shortswords" ;
+    :url "/api/proficiencies/shortswords" .
+
+:slings a :DnD_Entity ;
+    rdfs:label "Slings" ;
+    :url "/api/proficiencies/slings" .
+
+:dex a :DnD_Entity ;
+    rdfs:label "DEX" ;
+    :url "/api/ability-scores/dex" .
+
+:martial-weapons a :DnD_Entity ;
+    rdfs:label "Martial Weapons" ;
+    :url "/api/proficiencies/martial-weapons" .
+
+:medium-armor a :DnD_Entity ;
+    rdfs:label "Medium Armor" ;
+    :url "/api/proficiencies/medium-armor" .
+
+:saving-throw-dex a :DnD_Entity ;
+    rdfs:label "Saving Throw: DEX" ;
+    :url "/api/proficiencies/saving-throw-dex" .
+
+:saving-throw-str a :DnD_Entity ;
+    rdfs:label "Saving Throw: STR" ;
+    :url "/api/proficiencies/saving-throw-str" .
+
+:skill-acrobatics a :DnD_Entity ;
+    rdfs:label "Skill: Acrobatics" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-acrobatics" .
+
+:skill-deception a :DnD_Entity ;
+    rdfs:label "Skill: Deception" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-deception" .
+
+:skill-stealth a :DnD_Entity ;
+    rdfs:label "Skill: Stealth" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-stealth" .
+
+:str a :DnD_Entity ;
+    rdfs:label "STR" ;
+    :url "/api/ability-scores/str" .
+
+:cha a :DnD_Entity ;
+    rdfs:label "CHA" ;
+    :url "/api/ability-scores/cha" .
+
+:dagger a :DnD_Entity ;
+    rdfs:label "Dagger" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :quantity 1,
+        2 ;
+    :url "/api/equipment/dagger" .
+
+:saving-throw-cha a :DnD_Entity ;
+    rdfs:label "Saving Throw: CHA" ;
+    :url "/api/proficiencies/saving-throw-cha" .
+
+:saving-throw-wis a :DnD_Entity ;
+    rdfs:label "Saving Throw: WIS" ;
+    :url "/api/proficiencies/saving-throw-wis" .
+
+:skill-animal-handling a :DnD_Entity ;
+    rdfs:label "Skill: Animal Handling" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-animal-handling" .
+
+:skill-arcana a :DnD_Entity ;
+    rdfs:label "Skill: Arcana" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-arcana" .
+
+:skill-investigation a :DnD_Entity ;
+    rdfs:label "Skill: Investigation" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-investigation" .
+
+:skill-medicine a :DnD_Entity ;
+    rdfs:label "Skill: Medicine" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-medicine" .
+
+:skill-nature a :DnD_Entity ;
+    rdfs:label "Skill: Nature" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-nature" .
+
+:skill-persuasion a :DnD_Entity ;
+    rdfs:label "Skill: Persuasion" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-persuasion" .
+
+:skill-survival a :DnD_Entity ;
+    rdfs:label "Skill: Survival" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-survival" .
+
+:wis a :DnD_Entity ;
+    rdfs:label "WIS" ;
+    :url "/api/ability-scores/wis" .
+
+:dungeoneers-pack a :DnD_Entity ;
+    rdfs:label "Dungeoneer's Pack" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :url "/api/equipment/dungeoneers-pack" .
+
+:leather-armor a :DnD_Entity ;
+    rdfs:label "Leather Armor" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :quantity 1 ;
+    :url "/api/equipment/leather-armor" .
+
+:shields a :DnD_Entity ;
+    rdfs:label "Shields" ;
+    :url "/api/proficiencies/shields" .
+
+:skill-history a :DnD_Entity ;
+    rdfs:label "Skill: History" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-history" .
+
+:skill-perception a :DnD_Entity ;
+    rdfs:label "Skill: Perception" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-perception" .
+
+:light-armor a :DnD_Entity ;
+    rdfs:label "Light Armor" ;
+    :url "/api/proficiencies/light-armor" .
+
+:skill-athletics a :DnD_Entity ;
+    rdfs:label "Skill: Athletics" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-athletics" .
+
+:skill-intimidation a :DnD_Entity ;
+    rdfs:label "Skill: Intimidation" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-intimidation" .
+
+:skill-religion a :DnD_Entity ;
+    rdfs:label "Skill: Religion" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-religion" .
+
+:simple-weapons a :DnD_Entity ;
+    rdfs:label "Simple Weapons" ;
+    :url "/api/proficiencies/simple-weapons" .
+
+:explorers-pack a :DnD_Entity ;
+    rdfs:label "Explorer's Pack" ;
+    :count 1 ;
+    :optionType "counted_reference" ;
+    :quantity 1 ;
+    :url "/api/equipment/explorers-pack" .
+
+:skill-insight a :DnD_Entity ;
+    rdfs:label "Skill: Insight" ;
+    :optionType "reference" ;
+    :url "/api/proficiencies/skill-insight" .
+
