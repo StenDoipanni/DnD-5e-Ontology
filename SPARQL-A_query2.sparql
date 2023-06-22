@@ -1,6 +1,7 @@
 
-### This file is temporary. This query differs from the previous one for settin the parameter fx:use-rdfs-member to "true".
+### This query differs from the previous one for setting the parameter fx:use-rdfs-member to "true".
 ### This allows to use the rdfs:member property instead of rdf:_1, rdf:_2, etc.
+### The ontological module created is about the "Druid" Character Class.
 
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX fx: <http://sparql.xyz/facade-x/ns/>
